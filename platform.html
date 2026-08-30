@@ -43,7 +43,7 @@
       <a href="platform.html" style="color:var(--gold)">Platform</a>
       <a href="index.html#services" style="color:var(--fg-dim)">Services</a>
       <a href="index.html#proof" style="color:var(--fg-dim)">Proof</a>
-      <a href="mailto:jramirez@velocityqaqc.com" style="color:var(--fg-dim)">Contact</a>
+      <a href="#" onclick="openContact(event)" style="color:var(--fg-dim);cursor:pointer">Contact</a>
     </div>
   </div>
 
@@ -343,13 +343,114 @@
     <div style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:560px">See it running on a real job before you commit to anything.</div>
     <div style="position:relative">
       <div style="position:absolute;inset:-30px;border-radius:999px;background:radial-gradient(circle, rgba(227,214,180,.35), transparent 70%);filter:blur(6px)"></div>
-      <a href="mailto:jramirez@velocityqaqc.com" style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:999px;background:var(--gold);color:#0a0704;font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 40px rgba(227,214,180,.5)">
+      <a href="#" onclick="openContact(event)" style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:999px;background:var(--gold);color:#0a0704;font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 40px rgba(227,214,180,.5);cursor:pointer">
         Get In Touch
       </a>
     </div>
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)">jramirez@velocityqaqc.com &nbsp;·&nbsp; <a href="tel:+18326053739" style="color:var(--fg-faint)">+1 832-605-3739</a></div>
   </div>
 </div>
+
+<!-- ================= CONTACT MODAL ================= -->
+<style>
+  .contact-overlay{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;background:rgba(2,3,4,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .25s ease;padding:24px}
+  .contact-overlay.open{display:flex;opacity:1}
+  .contact-modal{position:relative;width:min(560px,100%);max-height:88vh;overflow-y:auto;background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:44px 40px 34px;box-shadow:0 40px 100px rgba(0,0,0,.65);transform:translateY(16px) scale(.97);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+  .contact-overlay.open .contact-modal{transform:translateY(0) scale(1)}
+  .contact-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid var(--hair);background:transparent;color:var(--fg-dim);font-size:18px;line-height:1;cursor:pointer;font-family:var(--body)}
+  .contact-close:hover{color:var(--fg);border-color:var(--gold)}
+  .contact-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .contact-title{font-family:var(--display);font-weight:600;font-size:30px;color:var(--fg);margin-bottom:10px;line-height:1.15}
+  .contact-sub{font-family:var(--body);font-weight:300;font-size:14px;line-height:1.6;color:var(--fg-dim);margin-bottom:26px}
+  .cf-row{margin-bottom:13px}
+  .cf-two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .cf-field input,.cf-field select,.cf-field textarea{width:100%;background:var(--bg);border:1px solid var(--hair);border-radius:6px;padding:13px 14px;color:var(--fg);font-family:var(--body);font-size:14px;outline:none;transition:border-color .15s ease;box-sizing:border-box}
+  .cf-field input::placeholder,.cf-field textarea::placeholder{color:var(--fg-faint)}
+  .cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--gold)}
+  .cf-field select{appearance:none;-webkit-appearance:none;color:var(--fg-dim);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%23e3d6b4'/></svg>");background-repeat:no-repeat;background-position:right 16px center}
+  .cf-field select option{background:var(--card);color:var(--fg)}
+  .cf-field textarea{resize:vertical;min-height:88px;font-family:var(--body)}
+  .cf-submit{width:100%;margin-top:6px;padding:15px;border-radius:999px;border:none;background:var(--gold);color:#0a0704;font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .15s ease,transform .1s ease}
+  .cf-submit:hover{background:var(--gold2)}
+  .cf-submit:active{transform:scale(.98)}
+  .cf-note{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--fg-faint);text-align:center;line-height:1.6}
+  .cf-note a{color:var(--fg-faint);text-decoration:underline}
+  @media (max-width:520px){.cf-two{grid-template-columns:1fr}.contact-modal{padding:34px 22px 26px}.contact-title{font-size:25px}}
+</style>
+
+<div id="contact-overlay" class="contact-overlay" onclick="if(event.target===this)closeContact()">
+  <div class="contact-modal">
+    <button type="button" class="contact-close" onclick="closeContact()" aria-label="Close">&times;</button>
+    <div class="contact-eyebrow">Let's Talk</div>
+    <div class="contact-title">Tell me about the job.</div>
+    <div class="contact-sub">Fill this out and it comes straight to me — no call center, no ticket queue.</div>
+    <form id="contact-form" onsubmit="return submitContact(event)">
+      <div class="cf-row cf-two">
+        <div class="cf-field"><input type="text" name="name" placeholder="Full name *" required></div>
+        <div class="cf-field"><input type="text" name="company" placeholder="Company"></div>
+      </div>
+      <div class="cf-row cf-two">
+        <div class="cf-field"><input type="email" name="email" placeholder="Email *" required></div>
+        <div class="cf-field"><input type="tel" name="phone" placeholder="Phone"></div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field">
+          <select name="interest" required>
+            <option value="" disabled selected>I'm interested in...</option>
+            <option>Inspection Services</option>
+            <option>Platform License</option>
+            <option>Both</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field"><textarea name="message" placeholder="Tell me a bit about the job or what you need..."></textarea></div>
+      </div>
+      <button type="submit" class="cf-submit">Send Message</button>
+      <div class="cf-note">Opens your email app with this pre-filled — or call <a href="tel:+18326053739">+1 832-605-3739</a> directly, 24/7.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openContact(e){
+    if(e) e.preventDefault();
+    document.getElementById('contact-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeContact(){
+    document.getElementById('contact-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') closeContact();
+  });
+  function submitContact(e){
+    e.preventDefault();
+    var f = e.target;
+    var name = f.name.value.trim();
+    var company = f.company.value.trim();
+    var email = f.email.value.trim();
+    var phone = f.phone.value.trim();
+    var interest = f.interest.value;
+    var message = f.message.value.trim();
+    var subject = 'New inquiry from ' + name + ' — ' + (interest || 'Velocity QA/QC');
+    var bodyLines = [
+      'Name: ' + name,
+      company ? 'Company: ' + company : null,
+      'Email: ' + email,
+      phone ? 'Phone: ' + phone : null,
+      'Interested in: ' + interest,
+      '',
+      message
+    ].filter(function(x){ return x !== null; });
+    var body = bodyLines.join('\n');
+    var mailto = 'mailto:jramirez@velocityqaqc.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = mailto;
+    return false;
+  }
+</script>
 
 </body>
 </html>
