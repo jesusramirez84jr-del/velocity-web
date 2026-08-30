@@ -51,10 +51,10 @@
   <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 64px 80px;gap:24px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Platform</div>
     <div style="font-family:var(--display);font-weight:600;font-size:58px;line-height:1.08;letter-spacing:.01em;max-width:880px;color:var(--fg)">
-      Built like the system you'd want <span style="color:var(--gold)">standing behind you</span> at an audit.
+      Built for <span style="color:var(--gold)">speed</span>. Built to make your team <span style="color:var(--gold)">know the code</span>, not just follow it.
     </div>
-    <div style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:660px">
-      Not a spreadsheet with a login screen. Here's exactly how it's structured, what runs where, and why it's built that way — so you know what you'd actually be trusting your data to.
+    <div style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:680px">
+      This industry doesn't wait, and your paperwork shouldn't either. Velocity exists to make the field move faster — and to train the people doing the work until they understand the code instead of just checking a box. Defending it in front of a Board is just what happens once that's already true.
     </div>
   </div>
 </div>
@@ -64,6 +64,66 @@
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:56px;max-width:680px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Structure</div>
     <div style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Four layers. Each one exists for a reason.</div>
+  </div>
+
+  <!-- ARCHITECTURE DIAGRAM -->
+  <div style="margin-bottom:56px;border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+    <svg viewBox="0 0 1160 560" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+      <text x="580" y="34" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="12" letter-spacing="2" fill="var(--gold)">FIELD → SYNC → DATABASE → ROLE-BASED ACCESS</text>
+
+      <!-- stacked layer bars -->
+      <g font-family="Barlow Condensed, sans-serif">
+        <rect x="230" y="56"  width="700" height="64" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
+        <text x="580" y="94" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1" fill="var(--fg)">① FIELD APP — offline-first capture</text>
+
+        <line x1="580" y1="120" x2="580" y2="150" stroke="var(--gold)" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="230" y="150" width="700" height="64" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
+        <text x="580" y="188" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1" fill="var(--fg)">② SYNC LAYER — pushes the moment there's signal</text>
+
+        <line x1="580" y1="214" x2="580" y2="244" stroke="var(--gold)" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="230" y="244" width="700" height="64" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
+        <text x="580" y="282" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1" fill="var(--fg)">③ SECURE DATABASE — row-level security</text>
+
+        <line x1="580" y1="308" x2="580" y2="338" stroke="var(--gold)" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="230" y="338" width="700" height="58" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
+        <text x="580" y="374" text-anchor="middle" font-size="18" font-weight="600" letter-spacing="1" fill="var(--fg)">④ ROLE-BASED ACCESS</text>
+
+        <!-- fan out -->
+        <line x1="580" y1="396" x2="140" y2="440" stroke="var(--gold)" stroke-width="1.1" marker-end="url(#arrow)"/>
+        <line x1="580" y1="396" x2="393" y2="440" stroke="var(--gold)" stroke-width="1.1" marker-end="url(#arrow)"/>
+        <line x1="580" y1="396" x2="646" y2="440" stroke="var(--gold)" stroke-width="1.1" marker-end="url(#arrow)"/>
+        <line x1="580" y1="396" x2="900" y2="440" stroke="var(--gold)" stroke-width="1.1" marker-end="url(#arrow)"/>
+
+        <g font-family="Barlow, sans-serif">
+          <rect x="40"  y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
+          <text x="140" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">STAFF</text>
+          <text x="140" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="140" dy="0">Full visibility across</tspan><tspan x="140" dy="16">every project in the org</tspan></text>
+
+          <rect x="293" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
+          <text x="393" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CLIENT ADMIN</text>
+          <text x="393" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="393" dy="0">Invites their own team,</tspan><tspan x="393" dy="16">opens new work orders</tspan></text>
+
+          <rect x="546" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
+          <text x="646" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CLIENT</text>
+          <text x="646" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="646" dy="0">Read-only access to their</tspan><tspan x="646" dy="16">whole project package</tspan></text>
+
+          <rect x="800" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
+          <text x="900" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">SUB-CONTRACTOR</text>
+          <text x="900" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="900" dy="0">Sees only the sections</tspan><tspan x="900" dy="16">explicitly granted to them</tspan></text>
+        </g>
+      </g>
+
+      <text x="580" y="554" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="11" letter-spacing="1" fill="var(--fg-faint)">EVERY LAYER ENFORCED BY POSTGRESQL ROW-LEVEL SECURITY — NOT JUST HIDDEN IN THE UI</text>
+
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
+        </marker>
+      </defs>
+    </svg>
   </div>
 
   <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:4px;overflow:hidden">
@@ -162,6 +222,17 @@
       <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the completion scorecard, and in the log — all at once, because it's one system, not five that happen to share a login page.</div>
     </div>
 
+  </div>
+</div>
+
+<!-- ================= WHY IT'S BUILT THIS WAY ================= -->
+<div class="section" style="padding:0 64px 96px;background:var(--bg)">
+  <div style="border:1px solid var(--hair);border-radius:6px;padding:56px 48px;background:linear-gradient(160deg, rgba(227,214,180,.07), transparent 55%), var(--card)">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Why It's Built This Way</div>
+    <div style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:760px;margin-bottom:18px">Fast doesn't mean cutting corners. Done right, it teaches the next person too.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);max-width:760px">
+      This industry doesn't slow down for anyone. Every reference, every logged weld, every drawing markup on this platform is built to double as a training tool — so the people learning under you actually understand the code, not just check a box. That's the difference between running inspections and building a team that outlasts any one job. Velocity isn't just the pace of the work — it's what happens when a crew stops guessing and starts knowing.
+    </div>
   </div>
 </div>
 
