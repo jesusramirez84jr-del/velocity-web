@@ -16,6 +16,12 @@
   a{color:var(--gold);text-decoration:none} a:hover{color:var(--gold2)}
   .section{width:100%;max-width:1440px;margin:0 auto}
 </style>
+<style>
+  .vqc-hero-smoke{position:absolute;inset:0;pointer-events:none;z-index:0}
+  .vqc-hero-smoke::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,0) 40%,rgba(5,6,7,.65) 100%)}
+  .vqc-hero-copy{opacity:0;transition:opacity 1s ease}
+  .vqc-hero-copy.on,html.vqc-still .vqc-hero-copy{opacity:1;transition:none}
+</style>
 </head>
 <body>
 
@@ -23,6 +29,7 @@
 <div class="section" style="background:
     radial-gradient(ellipse 900px 500px at 50% -10%, rgba(227,214,180,.08), transparent 60%),
     var(--bg); position:relative; overflow:hidden;">
+  <div class="vqc-hero-smoke" id="vqc-hero-smoke" aria-hidden="true"></div>
 
   <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;border-bottom:1px solid var(--hair)">
     <a href="index.html" style="display:flex;align-items:center;gap:14px">
@@ -48,9 +55,9 @@
   </div>
 
   <!-- ================= HERO ================= -->
-  <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 64px 80px;gap:24px">
+  <div class="vqc-hero-copy" id="vqc-hero-copy" style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 64px 80px;gap:24px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Platform</div>
-    <div style="font-family:var(--display);font-weight:600;font-size:58px;line-height:1.08;letter-spacing:.01em;max-width:880px;color:var(--fg)">
+    <div id="vqc-hero-title" style="font-family:var(--display);font-weight:600;font-size:58px;line-height:1.08;letter-spacing:.01em;max-width:880px;color:var(--fg)">
       Built for <span style="color:var(--gold)">speed</span>. Built to make your team <span style="color:var(--gold)">know the code</span>, not just follow it.
     </div>
     <div style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:680px">
@@ -452,5 +459,122 @@
   }
 </script>
 
+<script>
+/* ── VQCSmoke — crosshair fly-in + drifting smoke (canvas) ─────────────
+   mount(host, opts) draws into two canvases appended to `host` (which must
+   be positioned). opts:
+     mode   'intro' (animated: sweep → gone → rise → home) | 'still' (one
+            pre-rolled frame of the settled state, redrawn on resize)
+     home   () => {x, y, r}   crosshair rest position in host pixels
+     alpha  rest opacity of the crosshair (default .32)
+     onPhase(phase)           'sweep'|'gone'|'rise'|'home' (intro only)
+   returns {stop(), refresh()}                                          */
+window.VQCSmoke = (function () {
+  function makeSprite(n) {
+    var c = document.createElement('canvas'); c.width = c.height = n; var g = c.getContext('2d');
+    var r = g.createRadialGradient(n / 2, n / 2, 0, n / 2, n / 2, n / 2);
+    r.addColorStop(0, 'rgba(232,232,236,.55)'); r.addColorStop(.4, 'rgba(220,220,226,.22)'); r.addColorStop(1, 'rgba(210,210,216,0)');
+    g.fillStyle = r; g.fillRect(0, 0, n, n); return c;
+  }
+  var SPRITE = null;
+  function easeOut(k) { return k < 0 ? 0 : k > 1 ? 1 : 1 - Math.pow(1 - k, 3); }
+  function mount(host, opts) {
+    opts = opts || {};
+    var still = opts.mode === 'still', restA = opts.alpha == null ? 0.32 : opts.alpha;
+    var reduce = false; try { reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches; } catch (e) {}
+    if (reduce) still = true;
+    SPRITE = SPRITE || makeSprite(256);
+    var cv = document.createElement('canvas'), mk = document.createElement('canvas');
+    [cv, mk].forEach(function (c) { c.className = 'vqc-smoke-cv'; c.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none'; host.appendChild(c); });
+    var ctx = cv.getContext('2d'), mc = mk.getContext('2d');
+    var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1), puffs = [], stopped = false, raf = 0, t0 = 0, last = 0, lastPhase = '';
+    function size() {
+      W = host.clientWidth; H = host.clientHeight;
+      [cv, mk].forEach(function (c) { c.width = Math.max(1, W * DPR); c.height = Math.max(1, H * DPR); c.getContext('2d').setTransform(DPR, 0, 0, DPR, 0, 0); });
+    }
+    function home() { var h = opts.home ? opts.home() : null; return h || { x: W * 0.5, y: H * 0.4, r: Math.min(150, H * 0.45) }; }
+    function puff(x, y, r, amax, vx, vy, ttl) {
+      puffs.push({ x: x, y: y, r: r, a: 0, amax: amax, vx: vx, vy: vy, life: 0, ttl: ttl, grow: 0.10 + Math.random() * 0.22, wob: Math.random() * Math.PI * 2 });
+    }
+    function markAt(T) {
+      var h = home();
+      if (T < 1.5) { var k = T / 1.5, x = -140 + (W + 280) * (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+        return { x: x, y: H * 0.46 - Math.sin(k * Math.PI) * H * 0.06, r: 46, a: 1, phase: 'sweep' }; }
+      if (T < 2.1) return { x: h.x, y: H + 200, r: 46, a: 0, phase: 'gone' };
+      if (T < 3.8) { var k2 = easeOut((T - 2.1) / 1.7);
+        return { x: h.x, y: (H + 160) + (h.y - (H + 160)) * k2, r: 46 + (h.r - 46) * k2, a: 1 - (1 - restA) * k2, phase: 'rise' }; }
+      return { x: h.x, y: h.y, r: h.r, a: restA + 0.05 * Math.sin(T * 1.4), phase: 'home' };
+    }
+    var acc = 0;                                              // fractional spawn budget so density is per elapsed time, not per frame
+    function spawn(m, steps) {
+      var sc = Math.max(0.35, Math.min(1, H / 700));            // smaller hosts get smaller puffs
+      var rate = m.phase === 'sweep' ? 4 : m.phase === 'rise' ? 3 : m.phase === 'home' ? 0.6 : 0;
+      acc += rate * steps;
+      while (acc >= 1) { acc -= 1;
+        if (m.phase === 'sweep') puff(m.x - 20 - Math.random() * 40, m.y + (Math.random() - 0.5) * 36, (26 + Math.random() * 40) * sc, 0.16 + Math.random() * 0.08, -(0.4 + Math.random() * 0.9), -(0.15 + Math.random() * 0.35), 120 + Math.random() * 110);
+        else if (m.phase === 'rise') puff(m.x + (Math.random() - 0.5) * m.r * 0.9, m.y + m.r * 0.3 + Math.random() * 30, (30 + Math.random() * 60) * sc, 0.10 + Math.random() * 0.06, (Math.random() - 0.5) * 0.5, 0.35 + Math.random() * 0.5, 240 + Math.random() * 220);
+        else if (m.phase === 'home') puff(m.x - m.r * 0.9 + Math.random() * 30, m.y + (Math.random() - 0.5) * m.r * 1.3, (40 + Math.random() * 90) * sc, 0.045 + Math.random() * 0.04, 0.18 + Math.random() * 0.28, -(0.03 + Math.random() * 0.08), 500 + Math.random() * 500);
+      }
+      if (puffs.length > 260) puffs.splice(0, puffs.length - 260);
+    }
+    function advance(steps) {
+      for (var k = puffs.length - 1; k >= 0; k--) { var p = puffs[k]; p.life += steps; if (p.life >= p.ttl) { puffs.splice(k, 1); continue; }
+        var f = p.life / p.ttl; p.a = p.amax * (f < 0.15 ? f / 0.15 : 1 - (f - 0.15) / 0.85);
+        p.x += (p.vx + Math.sin(p.life / 90 + p.wob) * 0.18) * steps; p.y += (p.vy + Math.cos(p.life / 110 + p.wob) * 0.10) * steps; p.r += p.grow * steps; }
+    }
+    function draw(m) {
+      ctx.clearRect(0, 0, W, H);
+      for (var k = 0; k < puffs.length; k++) { var p = puffs[k]; ctx.globalAlpha = Math.max(0, p.a); ctx.drawImage(SPRITE, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2); }
+      ctx.globalAlpha = 1;
+      mc.clearRect(0, 0, W, H); if (m.a <= 0) return;
+      mc.save(); mc.translate(m.x, m.y); mc.globalAlpha = m.a;
+      mc.strokeStyle = '#e3ddc9'; mc.lineWidth = m.phase === 'home' ? 1.6 : 2.2; mc.shadowColor = 'rgba(0,228,244,.45)'; mc.shadowBlur = m.phase === 'home' ? 10 : 22;
+      mc.beginPath(); mc.arc(0, 0, m.r * 0.62, 0, Math.PI * 2); mc.stroke();
+      [[0, -m.r, 0, -m.r * 0.48], [0, m.r * 0.48, 0, m.r], [-m.r, 0, -m.r * 0.48, 0], [m.r * 0.48, 0, m.r, 0]].forEach(function (l) { mc.beginPath(); mc.moveTo(l[0], l[1]); mc.lineTo(l[2], l[3]); mc.stroke(); });
+      mc.shadowBlur = 0; mc.fillStyle = '#c0392b'; mc.beginPath(); mc.arc(0, 0, Math.max(3, m.r * 0.085), 0, Math.PI * 2); mc.fill();
+      if (m.phase === 'sweep') { mc.strokeStyle = 'rgba(227,221,201,.35)'; mc.lineWidth = 1; for (var i = 0; i < 4; i++) { mc.beginPath(); mc.moveTo(-m.r * 1.2, (i - 1.5) * 9); mc.lineTo(-m.r * (3.2 + i * 0.6), (i - 1.5) * 9); mc.stroke(); } }
+      mc.restore();
+    }
+    function renderStill() {                                   // pre-roll ~7 s so the frame carries its smoke history
+      size(); puffs = []; var T = 0, m;
+      while (T < 7) { m = markAt(T); if (m.phase !== 'sweep') spawn(m, 1); advance(1); T += 1 / 60; }
+      draw({ x: home().x, y: home().y, r: home().r, a: restA, phase: 'home' });
+      if (opts.onPhase) opts.onPhase('home');
+    }
+    function step(now) {
+      if (stopped) return;
+      var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now; var T = (now - t0) / 1000, m = markAt(T);
+      spawn(m, dt * 60); advance(dt * 60); draw(m);
+      if (m.phase !== lastPhase) { lastPhase = m.phase; if (opts.onPhase) opts.onPhase(m.phase); }
+      raf = requestAnimationFrame(step);
+    }
+    var onResize = still ? renderStill : size;
+    window.addEventListener('resize', onResize);
+    if (still) renderStill();
+    else { size(); raf = requestAnimationFrame(function (n) { t0 = n; last = n; step(n); }); }
+    return {
+      stop: function () { stopped = true; cancelAnimationFrame(raf); window.removeEventListener('resize', onResize); [cv, mk].forEach(function (c) { if (c.parentNode) c.parentNode.removeChild(c); }); },
+      refresh: function () { if (still) renderStill(); else size(); }
+    };
+  }
+  return { mount: mount };
+})();
+</script>
+<script>
+(function () {   /* hero: crosshair flies in, comes back from below and rests behind the headline; smoke drifts through */
+  var host = document.getElementById('vqc-hero-smoke'), copy = document.getElementById('vqc-hero-copy'), title = document.getElementById('vqc-hero-title');
+  if (!host || !window.VQCSmoke) { if (copy) copy.classList.add('on'); return; }
+  var still = /[?&]still=1/.test(location.search); if (still) document.documentElement.classList.add('vqc-still');
+  var timer = 0;
+  VQCSmoke.mount(host, { mode: still ? 'still' : 'intro', alpha: 0.26, home: function () {
+    var hr = host.getBoundingClientRect(), tr = (title || copy || host).getBoundingClientRect();
+    return { x: tr.left - hr.left + tr.width / 2, y: tr.top - hr.top + tr.height / 2, r: Math.max(120, Math.min(240, tr.height * 1.1)) };
+  }, onPhase: function (ph) {
+    if (ph === 'rise') timer = setTimeout(function () { copy.classList.add('on'); }, 1000);
+    if (ph === 'home') { clearTimeout(timer); copy.classList.add('on'); }
+  } });
+  setTimeout(function () { copy.classList.add('on'); }, 4500);
+})();
+</script>
 </body>
 </html>
