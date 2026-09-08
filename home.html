@@ -22,6 +22,12 @@
   .vqc-hero-copy{opacity:0;transition:opacity 1s ease}
   .vqc-hero-copy.on,html.vqc-still .vqc-hero-copy{opacity:1;transition:none}
 </style>
+<style>
+  .vqc-signin{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--gold);border-radius:999px;color:var(--gold) !important;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .15s,color .15s}
+  .vqc-signin:hover{background:var(--gold);color:#0a0704 !important}
+  .vqc-signin svg{width:12px;height:12px;flex:none}
+  @media (max-width:760px){.vqc-nav-links{gap:18px}.vqc-nav-links a:not(.vqc-signin){display:none}}
+</style>
 </head>
 <body>
 
@@ -51,11 +57,12 @@
         Velocity <span style="color:var(--gold)">QA/QC</span>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:40px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim)">
+    <div class="vqc-nav-links" style="display:flex;align-items:center;gap:40px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim)">
       <a href="platform.html" style="color:var(--fg-dim)">Platform</a>
       <a href="#services" style="color:var(--fg-dim)">Services</a>
       <a href="#proof" style="color:var(--fg-dim)">Proof</a>
       <a href="#" onclick="openContact(event)" style="color:var(--fg-dim);cursor:pointer">Contact</a>
+      <a class="vqc-signin" href="https://app.velocityqaqc.com" target="_blank" rel="noopener" title="Sign in to the Velocity QA/QC field app (by invitation)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="1.4" fill="currentColor" stroke="none"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3"/></svg>Client sign in</a>
     </div>
   </div>
 
