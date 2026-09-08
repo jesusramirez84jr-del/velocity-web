@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Velocity QA/QC — Terms of Use</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050607; --bg2:#0a0e14;
+    --fg:#eef2f8; --fg-dim:rgba(230,238,248,.62); --fg-faint:rgba(230,238,248,.38);
+    --gold:#e3d6b4; --red:#c97b78; --gold2:#f3ead2; --blue:#5f8fff; --hair:rgba(255,255,255,.10); --card:#0a0d13;
+    --display:'Barlow Condensed',sans-serif; --body:'Barlow',sans-serif; --mono:'Share Tech Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body)}
+  a{color:var(--gold);text-decoration:none} a:hover{color:var(--gold2)}
+  .section{width:100%;max-width:1440px;margin:0 auto}
+</style>
+<style>
+  .vqc-hero-smoke{position:absolute;inset:0;pointer-events:none;z-index:0}
+  .vqc-hero-smoke::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,0) 40%,rgba(5,6,7,.65) 100%)}
+  .vqc-hero-copy{opacity:0;transition:opacity 1s ease}
+  .vqc-hero-copy.on,html.vqc-still .vqc-hero-copy{opacity:1;transition:none}
+</style>
+<style>
+  .vqc-signin{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--gold);border-radius:999px;color:var(--gold) !important;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .15s,color .15s}
+  .vqc-signin:hover{background:var(--gold);color:#0a0704 !important}
+  .vqc-signin svg{width:12px;height:12px;flex:none}
+  @media (max-width:760px){.vqc-nav-links{gap:18px}.vqc-nav-links a:not(.vqc-signin){display:none}}
+</style>
+</head>
+<body>
+<!-- ================= HEADER ================= -->
+<div class="section" style="background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(227,214,180,.08), transparent 60%),
+    var(--bg); position:relative; overflow:hidden;">
+  
+
+  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;border-bottom:1px solid var(--hair)">
+    <a href="index.html" style="display:flex;align-items:center;gap:14px">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="12.5" stroke="var(--gold)" stroke-width="1"/>
+        <circle cx="15" cy="15" r="8" stroke="var(--gold)" stroke-width="1" opacity=".5"/>
+        <line x1="15" y1="1.5" x2="15" y2="5.5" stroke="var(--gold)" stroke-width="1.2"/>
+        <line x1="15" y1="24.5" x2="15" y2="28.5" stroke="var(--gold)" stroke-width="1.2" opacity=".4"/>
+        <line x1="27.5" y1="15" x2="23.5" y2="15" stroke="var(--gold)" stroke-width="1.2" opacity=".4"/>
+        <line x1="6.5" y1="15" x2="2.5" y2="15" stroke="var(--gold)" stroke-width="1.2" opacity=".4"/>
+        <circle cx="15" cy="15" r="1.6" fill="var(--red)"/>
+      </svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg)">
+        Velocity <span style="color:var(--gold)">QA/QC</span>
+      </div>
+    </a>
+    <div class="vqc-nav-links" style="display:flex;align-items:center;gap:40px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim)">
+      <a href="platform.html" style="color:var(--gold)">Platform</a>
+      <a href="home.html#services" style="color:var(--fg-dim)">Services</a>
+      <a href="home.html#proof" style="color:var(--fg-dim)">Proof</a>
+      <a href="#" onclick="openContact(event)" style="color:var(--fg-dim);cursor:pointer">Contact</a>
+      <a class="vqc-signin" href="https://app.velocityqaqc.com" target="_blank" rel="noopener" title="Sign in to the Velocity QA/QC field app (by invitation)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="1.4" fill="currentColor" stroke="none"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3"/></svg>Client sign in</a>
+    </div>
+  </div>
+
+    </div>
+<div class="section" style="padding:56px 64px 96px"><div style="font-family:var(--display);font-weight:600;font-size:42px;letter-spacing:.01em;color:var(--fg);margin-bottom:4px">Terms of Use</div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:28px">Version 2026-09-08 · Draft for review by Velocity QA/QC before it is relied on</div><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">1. WHO WE ARE</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Velocity QA/QC (&quot;Velocity&quot;, &quot;we&quot;) provides the Velocity QA/QC field inspection application at app.velocityqaqc.com (the &quot;App&quot;) and the website velocityqaqc.com. Contact: jramirez@velocityqaqc.com.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">2. WHO THESE TERMS ARE FOR</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">These terms apply to every person who signs in to the App: client administrators, client users, subcontractors and anyone else invited to a job. By signing in you accept these terms on your own behalf and, where you act for a company, on behalf of that company. If you do not accept them, do not sign in.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">3. ACCESS IS BY INVITATION</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Accounts are created by invitation from Velocity or from a client administrator on your job. Your access is limited to the jobs and sections you were given. Velocity may add, change, suspend or remove access at any time, including when a company&#x27;s trial ends or billing stops. A client administrator may add or remove people of their own company on their own jobs only.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">4. WHO OWNS WHAT</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">The App, its design, its code, its templates, checklists, reference material and everything that makes it work belong to Velocity QA/QC. You receive a right to use the App, not ownership of it. You may not copy, resell, reverse-engineer, scrape or build a competing product from it.</p><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">The records you and your company enter on your own jobs (weld logs, inspection records, test packs, documents, photos, drawings and the printed packages made from them) belong to your company. You may print and export them at any time while you have access. Velocity holds them on your behalf and does not use them for any purpose other than running the App and supporting you.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">5. YOUR RESPONSIBILITIES</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">You are responsible for what you enter and for the accuracy of your own records. The App organises, checks and prints inspection records; it does not replace the judgement of a qualified inspector, the Authorized Inspector, the engineer of record, or the jurisdiction. Code references, tips and information pages inside the App are for information only and must be verified against the current edition of the code and the applicable law. Keep your sign-in private, sign out on shared devices, and tell Velocity at once if you believe an account is compromised.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">6. ACCEPTABLE USE</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Do not enter data you have no right to share, do not attempt to access other companies&#x27; jobs or Velocity&#x27;s administration, do not upload malicious files, and do not use the App to break any law or contract.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">7. WHERE DATA IS KEPT</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Job data is stored in a hosted database and file store operated by Velocity&#x27;s service provider, encrypted in transit. A copy of recent work is also kept on your own device so the App works without signal; that copy is under your control. Velocity keeps backups. Velocity staff can see job data in order to run and support the service.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">8. TRIALS, PAYMENT AND ENDING ACCESS</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Trial access is free for the period Velocity states and may be ended at any time. Paid plans are as agreed in writing with Velocity. When access ends, sign-in stops; Velocity will keep the company&#x27;s job records available for export for at least 60 days after that on request, then may delete them.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">9. NO WARRANTY, LIMITED LIABILITY</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">The App is provided as is. Velocity does not promise it will be free of errors or interruptions, and does not accept liability for decisions made on the basis of records kept in it, for lost data you did not export, or for indirect or consequential loss. Where liability cannot be excluded by law, it is limited to the fees you paid to Velocity in the twelve months before the claim.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">10. CHANGES</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Velocity may update the App and these terms. When the terms change in a way that matters, you will be asked to accept the new version at your next sign-in. Continued use after that is acceptance.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">11. GOVERNING LAW</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">These terms are governed by the laws of the State of Texas, United States, and any dispute will be heard in the courts of Harris County, Texas, unless Velocity agrees otherwise in writing.</p><div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.04em;color:var(--fg);margin:26px 0 8px">12. QUESTIONS</div><p style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);margin:0 0 10px;max-width:820px">Write to jramirez@velocityqaqc.com.</p><div style="margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)">jramirez@velocityqaqc.com &nbsp;·&nbsp; <a href="platform.html" style="color:var(--fg-faint)">Back to the platform</a></div></div>
+</body></html>
