@@ -2,7 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050607">
 <title>Velocity QA/QC — The Platform</title>
+<meta name="description" content="The Velocity QA/QC field platform: offline-first weld, NDE, bolt-up and pressure-test records, mill certificates read page by page, ITP approvals, per-item audit reports and a printed data book in your company's brand — every table behind row-level security.">
+<link rel="canonical" href="https://velocityqaqc.com/platform.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Velocity QA/QC — The Platform">
+<meta property="og:description" content="Offline-first field QC records, certificates read for you, ITP approvals, audit reports and a data book printed in your company's brand. Role-based access, row-level security.">
+<meta property="og:url" content="https://velocityqaqc.com/platform.html">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -26,7 +34,39 @@
   .vqc-signin{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--gold);border-radius:999px;color:var(--gold) !important;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background .15s,color .15s}
   .vqc-signin:hover{background:var(--gold);color:#0a0704 !important}
   .vqc-signin svg{width:12px;height:12px;flex:none}
-  @media (max-width:760px){.vqc-nav-links{gap:18px}.vqc-nav-links a:not(.vqc-signin){display:none}}
+  .vqc-menu-btn{display:none;width:38px;height:38px;border:1px solid var(--hair);border-radius:8px;background:transparent;color:var(--fg-dim);cursor:pointer;padding:0;align-items:center;justify-content:center;flex:none}
+  .vqc-menu-btn svg{width:18px;height:18px}
+  .vqc-menu-btn[aria-expanded="true"]{border-color:var(--gold);color:var(--gold)}
+  @media (max-width:760px){
+    .vqc-hdr{padding:18px 20px !important}
+    .vqc-logo-text{font-size:15px !important;letter-spacing:.18em !important}
+    .vqc-nav-right{gap:10px !important}
+    .vqc-menu-btn{display:inline-flex}
+    .vqc-signin{padding:8px 12px;font-size:10px;letter-spacing:.1em}
+    .vqc-nav-links{display:none !important;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0 !important;background:#050607;border-bottom:1px solid var(--hair);z-index:20}
+    .vqc-nav-links.open{display:flex !important}
+    .vqc-nav-links a{padding:16px 20px;border-top:1px solid var(--hair);font-size:12px}
+    .vqc-pad{padding-left:20px !important;padding-right:20px !important}
+    .vqc-pad-y{padding-top:56px !important;padding-bottom:56px !important}
+    .vqc-hero{padding:64px 20px 56px !important;gap:18px !important}
+    .vqc-h1{font-size:38px !important}
+    .vqc-h2{font-size:28px !important}
+    .vqc-lead{font-size:16px !important}
+    .vqc-hero-foot{flex-wrap:wrap;justify-content:center;gap:10px !important}
+    .vqc-g3,.vqc-g4,.vqc-g5{grid-template-columns:1fr !important}
+    .vqc-g4,.vqc-g5{gap:22px !important}
+    .vqc-flowline{display:none}
+    .vqc-rows{grid-template-columns:48px 1fr !important;gap:14px !important;padding:20px 18px !important}
+    .vqc-rows > :last-child{grid-column:1 / -1}
+    .vqc-stat{border-right:none !important;border-bottom:1px solid var(--hair)}
+    .vqc-stat:last-child{border-bottom:none}
+    .vqc-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:20px 12px !important}
+    .vqc-diagram svg{min-width:760px}
+    .vqc-diagram-hint{display:block !important}
+    .vqc-ba > div{padding:14px 14px !important;font-size:14px !important}
+    .vqc-card{padding:24px 20px !important}
+    .vqc-box{padding:32px 20px !important}
+  }
 </style>
 </head>
 <body>
@@ -37,7 +77,7 @@
     var(--bg); position:relative; overflow:hidden;">
   <div class="vqc-hero-smoke" id="vqc-hero-smoke" aria-hidden="true"></div>
 
-  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;border-bottom:1px solid var(--hair)">
+  <div class="vqc-hdr" style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;border-bottom:1px solid var(--hair)">
     <a href="index.html" style="display:flex;align-items:center;gap:14px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
         <circle cx="15" cy="15" r="12.5" stroke="var(--gold)" stroke-width="1"/>
@@ -48,40 +88,44 @@
         <line x1="6.5" y1="15" x2="2.5" y2="15" stroke="var(--gold)" stroke-width="1.2" opacity=".4"/>
         <circle cx="15" cy="15" r="1.6" fill="var(--red)"/>
       </svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg)">
+      <div class="vqc-logo-text" style="font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg)">
         Velocity <span style="color:var(--gold)">QA/QC</span>
       </div>
     </a>
-    <div class="vqc-nav-links" style="display:flex;align-items:center;gap:40px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim)">
+    <div class="vqc-nav-right" style="display:flex;align-items:center;gap:40px">
+      <nav class="vqc-nav-links" aria-label="Site" style="display:flex;align-items:center;gap:40px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim)">
       <a href="platform.html" style="color:var(--gold)">Platform</a>
       <a href="home.html#services" style="color:var(--fg-dim)">Services</a>
       <a href="home.html#proof" style="color:var(--fg-dim)">Proof</a>
       <a href="#" onclick="openContact(event)" style="color:var(--fg-dim);cursor:pointer">Contact</a>
+      </nav>
       <a class="vqc-signin" href="https://app.velocityqaqc.com" target="_blank" rel="noopener" title="Sign in to the Velocity QA/QC field app (by invitation)"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="1.4" fill="currentColor" stroke="none"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3"/></svg>Client sign in</a>
+      <button type="button" class="vqc-menu-btn" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
     </div>
   </div>
 
   <!-- ================= HERO ================= -->
-  <div class="vqc-hero-copy" id="vqc-hero-copy" style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 64px 80px;gap:24px">
+  <div class="vqc-hero-copy vqc-hero" id="vqc-hero-copy" style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 64px 80px;gap:24px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Platform</div>
-    <div id="vqc-hero-title" style="font-family:var(--display);font-weight:600;font-size:58px;line-height:1.08;letter-spacing:.01em;max-width:880px;color:var(--fg)">
+    <div id="vqc-hero-title" class="vqc-h1" style="font-family:var(--display);font-weight:600;font-size:58px;line-height:1.08;letter-spacing:.01em;max-width:880px;color:var(--fg)">
       Built for <span style="color:var(--gold)">speed</span>. Built to make your team <span style="color:var(--gold)">know the code</span>, not just follow it.
     </div>
-    <div style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:680px">
+    <div class="vqc-lead" style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:680px">
       This industry doesn't wait, and your paperwork shouldn't either. Velocity exists to make the field move faster — and to train the people doing the work until they understand the code instead of just checking a box. Defending it in front of a Board is just what happens once that's already true.
     </div>
   </div>
 </div>
 
 <!-- ================= ARCHITECTURE STACK ================= -->
-<div class="section" style="padding:96px 64px;background:var(--bg)">
+<div class="section vqc-pad vqc-pad-y" style="padding:96px 64px;background:var(--bg)">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:56px;max-width:680px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Structure</div>
-    <div style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Four layers. Each one exists for a reason.</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Four layers. Each one exists for a reason.</div>
   </div>
 
   <!-- ARCHITECTURE DIAGRAM -->
-  <div style="margin-bottom:56px;border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+  <div class="vqc-diagram" style="margin-bottom:56px;border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+    <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
     <svg viewBox="0 0 1160 560" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
       <text x="580" y="34" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="12" letter-spacing="2" fill="var(--gold)">FIELD → SYNC → DATABASE → ROLE-BASED ACCESS</text>
 
@@ -143,7 +187,7 @@
   <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:4px;overflow:hidden">
 
     <!-- LAYER 1 -->
-    <div style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
+    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">1</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Field App</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
@@ -152,7 +196,7 @@
     </div>
 
     <!-- LAYER 2 -->
-    <div style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg);border-bottom:1px solid var(--hair)">
+    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg);border-bottom:1px solid var(--hair)">
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">2</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Sync Layer</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
@@ -161,7 +205,7 @@
     </div>
 
     <!-- LAYER 3 -->
-    <div style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
+    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">3</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Secure Database</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
@@ -170,7 +214,7 @@
     </div>
 
     <!-- LAYER 4 -->
-    <div style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg)">
+    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg)">
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">4</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Role-Based Access</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
@@ -182,68 +226,95 @@
 </div>
 
 <!-- ================= WHAT'S ACTUALLY IN IT ================= -->
-<div class="section" style="padding:0 64px 96px;background:var(--bg)">
+<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:48px;max-width:680px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Inside The Platform</div>
-    <div style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">What's actually built, not a roadmap.</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">What's actually built, not a roadmap.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Every item below is running on live jobs today. One build for everyone on the platform — when a tool gets sharper, every company has it on their next load.</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
 
-    <div style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
-        <rect x="6" y="4" width="18" height="23" rx="2"/><path d="M10.5 15.5l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="18" height="23" rx="2"/><path d="M10.5 15.5l3 3 6-6.5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Weld Traceability</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every weld logged with size, process, welder stamp, NDE method and result. Completion tracked in diameter-inches — the same unit the industry actually measures progress in — not just a raw count.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every weld logged with size, process, welder stamp, NDE method and result — completion tracked in diameter-inches, the unit the industry actually measures. The welder's stencil and date sit on the field-weld mark; an NDE stamp placed near a weld on the drawing writes the weld log and the NDE register itself. Repairs, cut-outs and tracers keep their own rows.</div>
     </div>
 
-    <div style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
-        <rect x="9" y="9" width="12" height="12" rx="1.5"/><line x1="15" y1="2.5" x2="15" y2="6" stroke-linecap="round"/><line x1="15" y1="24" x2="15" y2="27.5" stroke-linecap="round"/><line x1="2.5" y1="15" x2="6" y2="15" stroke-linecap="round"/><line x1="24" y1="15" x2="27.5" y2="15" stroke-linecap="round"/>
-      </svg>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M15 2.5V6M15 24v3.5M2.5 15H6M24 15h3.5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Isometric Drawings, Live</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Load a real PDF or sketch on a true isometric grid. Markers carry real data — click one to edit it, edit the log table and the drawing updates back. Multi-sheet, rotatable symbols, your own custom symbol library, sign-off built in.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Load an IFC PDF, a photo of a marked-up print, or sketch on a true isometric grid. Markers carry real data — edit the mark and the log updates, edit the log and the drawing follows. A legend that learns the job's own words, pick-up callouts, multi-sheet, your own symbol library, sign-off built in.</div>
     </div>
 
-    <div style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
-        <path d="M7 25V15M15 25V6M23 25V18" stroke-linecap="round"/>
-      </svg>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h10l5 5v17H8z"/><path d="M18 4v5h5"/><path d="M11 14h8M11 18h8M11 22h5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Certificates Read For You</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Drop a stack of mill certificates. Every page is read: one row per heat, duplicate pages set aside, sideways pages turned and retried, unreadable pages come up on screen to be typed. The MTR INDEX and the MTR PACKAGE file themselves as PDFs; rod and wire certificates go to Filler Metal.</div>
+    </div>
+
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 25V15M15 25V6M23 25V18"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Bolt-Up &amp; Pressure Testing</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Flange-by-flange torque log with the real 30%/60%/final staged sequence, QC acceptance dates, wrench serial numbers. Hydro and pneumatic test packages with pass/fail tracking, all rolled up together.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Flange-by-flange torque log with the real 30%/60%/final sequence, wrench serials and acceptance dates. Hydro and pneumatic packs with pass/fail; the chart-recorder disc is read into the pack, gauge certificates are checked for expiry, and a test boundary drawn on the sheet fills the pack's weld scope.</div>
     </div>
 
-    <div style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
-        <circle cx="15" cy="15" r="11"/><path d="M15 15L21 9.5" stroke-linecap="round"/><circle cx="15" cy="15" r="1.8" fill="var(--gold)" stroke="none"/>
-      </svg>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="20" height="18" rx="2"/><path d="M9 12h12M9 16h8"/><path d="M17 20l2 2 4-4"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">ITP Approvals In The App</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A responsible person on every inspection point. Submitting freezes a numbered revision; the client's admin approves or asks for changes on a banner; the approved copy prints with its stamp. Edits after approval bump the revision automatically — no emailed PDFs going back and forth.</div>
+    </div>
+
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h22"/><path d="M4 22V10h5v12M12.5 22V6h5v16M21 22v-8h5v8"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Job Flow Board</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Nine stages — drawings, materials, welding, NDE, test, coating, installation, pre-commissioning, turnover — read live from the folder. A failed weld or pack, a drawing revised under its welds, or an ITP still waiting turns its stage yellow. Percent per stage and progress over time, on one board.</div>
+    </div>
+
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 15L21 9.5"/><circle cx="15" cy="15" r="1.8" fill="var(--gold)" stroke="none"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">One Completion Number</div>
       <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Welding, bolt-up, and pressure testing each contribute a weighted share to one overall physical-completion percentage — the number a project manager actually wants, computed live instead of assembled by hand before a meeting.</div>
     </div>
 
-    <div style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
-        <rect x="4" y="8" width="22" height="16" rx="2"/><path d="M4 10l11 7 11-7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Invite Your Own Team</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Once your account is active, add your own inspectors and stand up new work orders yourself — no waiting on us for every routine addition. You control exactly what each person on your team can see and touch.</div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h16v22H7z"/><path d="M11 9h8M11 13h8M11 17h5"/><circle cx="21" cy="21" r="4" fill="var(--bg)"/><path d="M19.5 21l1 1 2-2"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Quality Audit Per Item</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Eleven audit items rated on their own — welding, NDE, materials, WPS/WPQ, PWHT, pressure test, ISO 3834, NCR, equipment, closeout. The verdict follows the ratings. Numbered reports, a real PDF built on the device, sent to the job's people and filed in Docs &amp; Photos, every report kept in the history.</div>
     </div>
 
-    <div style="background:linear-gradient(160deg, rgba(227,214,180,.10), transparent 60%), var(--card);padding:32px;display:flex;flex-direction:column;justify-content:center;gap:10px">
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l12 21H3z"/><path d="M15 12v6"/><circle cx="15" cy="21" r=".9" fill="var(--gold)"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Needs Attention</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One list for every mismatch the folder finds on its own: a welder stencil with no qualification on file, bolt-up marks without a torque log, a drawing revised under its welds, a certificate page that was skipped. Each item holds the flow until someone deals with it — and records who did.</div>
+    </div>
+
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V4h14v8"/><rect x="4" y="12" width="22" height="9" rx="1.5"/><path d="M8 17v9h14v-9"/><path d="M11 21h8M11 24h5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Printed In Your Brand</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">The data book prints under your company's logo and name, not ours: cover, index and every section page stamped with the job, a confidential line at the foot of every sheet. Your own cover, your own section names, only the sections you use — nineteen when you want them all.</div>
+    </div>
+
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="22" height="16" rx="2"/><path d="M4 10l11 7 11-7"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Invite Your Own Team</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Once your account is active, add your own inspectors and stand up new work orders yourself. Invite links expire; every upload is traced to a person; notices and an activity history say who did what and when. Company exports and a monthly backup are yours to download.</div>
+    </div>
+
+    <div class="vqc-card" style="background:linear-gradient(160deg, rgba(227,214,180,.10), transparent 60%), var(--card);padding:32px;display:flex;flex-direction:column;justify-content:center;gap:10px">
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">The Point</div>
       <div style="font-family:var(--display);font-weight:500;font-size:16.5px;line-height:1.4;color:var(--fg)">Every one of these tools reads and writes the same underlying record.</div>
-      <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the completion scorecard, and in the log — all at once, because it's one system, not five that happen to share a login page.</div>
+      <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the Job Flow board, in the completion scorecard, and in the log — all at once, because it's one system, not a dozen that happen to share a login page.</div>
     </div>
 
   </div>
 </div>
 
 <!-- ================= WHY IT'S BUILT THIS WAY ================= -->
-<div class="section" style="padding:0 64px 96px;background:var(--bg)">
-  <div style="border:1px solid var(--hair);border-radius:6px;padding:56px 48px;background:linear-gradient(160deg, rgba(227,214,180,.07), transparent 55%), var(--card)">
+<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
+  <div class="vqc-box" style="border:1px solid var(--hair);border-radius:6px;padding:56px 48px;background:linear-gradient(160deg, rgba(227,214,180,.07), transparent 55%), var(--card)">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Why It's Built This Way</div>
-    <div style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:760px;margin-bottom:18px">Fast doesn't mean cutting corners. Done right, it teaches the next person too.</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:760px;margin-bottom:18px">Fast doesn't mean cutting corners. Done right, it teaches the next person too.</div>
     <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);max-width:760px">
       This industry doesn't slow down for anyone. Every reference, every logged weld, every drawing markup on this platform is built to double as a training tool — so the people learning under you actually understand the code, not just check a box. That's the difference between running inspections and building a team that outlasts any one job. Velocity isn't just the pace of the work — it's what happens when a crew stops guessing and starts knowing.
     </div>
@@ -251,8 +322,8 @@
 </div>
 
 <!-- ================= TRUST STRIP ================= -->
-<div class="section" style="padding:0 64px 110px;background:var(--bg)">
-  <div style="border-top:1px solid var(--hair);padding-top:32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px">
+<div class="section vqc-pad" style="padding:0 64px 110px;background:var(--bg)">
+  <div class="vqc-g4" style="border-top:1px solid var(--hair);padding-top:32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px">
     <div>
       <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Row-Level Access</div>
       <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every table checks who you are before it answers — nothing is open by default.</div>
@@ -273,13 +344,14 @@
 </div>
 
 <!-- ================= GETTING STARTED ================= -->
-<div class="section" style="padding:0 64px 96px;background:var(--bg)">
+<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;max-width:680px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Getting Started</div>
-    <div style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Two ways to start. One point of contact the whole way through.</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Two ways to start. One point of contact the whole way through.</div>
   </div>
 
-  <div style="border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+  <div class="vqc-diagram" style="border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+    <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
     <svg viewBox="0 0 1150 700" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
       <g font-family="Barlow Condensed, sans-serif">
         <rect x="455" y="30" width="240" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
@@ -352,16 +424,16 @@
 </div>
 
 <!-- ================= CTA ================= -->
-<div class="section" style="padding:0 64px 120px;background:var(--bg);text-align:center">
-  <div style="border:1px solid var(--hair);border-radius:6px;padding:64px 48px;display:flex;flex-direction:column;align-items:center;gap:22px;background:radial-gradient(ellipse 700px 300px at 50% 0%, rgba(227,214,180,.08), transparent 70%)">
-    <div style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:560px">See it running on a real job before you commit to anything.</div>
+<div class="section vqc-pad" style="padding:0 64px 120px;background:var(--bg);text-align:center">
+  <div class="vqc-box" style="border:1px solid var(--hair);border-radius:6px;padding:64px 48px;display:flex;flex-direction:column;align-items:center;gap:22px;background:radial-gradient(ellipse 700px 300px at 50% 0%, rgba(227,214,180,.08), transparent 70%)">
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:560px">See it running on a real job before you commit to anything.</div>
     <div style="position:relative">
       <div style="position:absolute;inset:-30px;border-radius:999px;background:radial-gradient(circle, rgba(227,214,180,.35), transparent 70%);filter:blur(6px)"></div>
       <a href="#" onclick="openContact(event)" style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:999px;background:var(--gold);color:#0a0704;font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 40px rgba(227,214,180,.5);cursor:pointer">
         Get In Touch
       </a>
     </div>
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)">jramirez@velocityqaqc.com &nbsp;·&nbsp; <a href="tel:+18326053739" style="color:var(--fg-faint)">+1 832-605-3739</a> &nbsp;·&nbsp; <a href="https://app.velocityqaqc.com" target="_blank" rel="noopener" style="color:var(--gold)">Client sign in</a> &nbsp;·&nbsp; <a href="terms.html" style="color:var(--fg-faint)">Terms of Use</a></div>
+    <div class="vqc-hero-foot" style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)"><span>jramirez@velocityqaqc.com</span> &nbsp;·&nbsp; <a href="tel:+18326053739" style="color:var(--fg-faint)">+1 832-605-3739</a> &nbsp;·&nbsp; <a href="https://app.velocityqaqc.com" target="_blank" rel="noopener" style="color:var(--gold)">Client sign in</a> &nbsp;·&nbsp; <a href="terms.html" style="color:var(--fg-faint)">Terms of Use</a></div>
   </div>
 </div>
 
@@ -428,8 +500,18 @@
 </div>
 
 <script>
+  function toggleMenu(){
+    var n=document.querySelector('.vqc-nav-links'), b=document.querySelector('.vqc-menu-btn');
+    var o=!n.classList.contains('open'); n.classList.toggle('open',o); if(b) b.setAttribute('aria-expanded',o?'true':'false');
+  }
+  function closeMenu(){
+    var n=document.querySelector('.vqc-nav-links'), b=document.querySelector('.vqc-menu-btn');
+    if(n) n.classList.remove('open'); if(b) b.setAttribute('aria-expanded','false');
+  }
+  document.addEventListener('DOMContentLoaded', function(){ var n=document.querySelector('.vqc-nav-links'); if(n) n.addEventListener('click', function(e){ if(e.target.closest('a')) closeMenu(); }); });
   function openContact(e){
     if(e) e.preventDefault();
+    closeMenu();
     document.getElementById('contact-overlay').classList.add('open');
     document.body.style.overflow='hidden';
   }
@@ -438,7 +520,7 @@
     document.body.style.overflow='';
   }
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape') closeContact();
+    if(e.key==='Escape'){ closeContact(); closeMenu(); }
   });
   function submitContact(e){
     e.preventDefault();
