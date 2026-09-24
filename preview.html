@@ -68,6 +68,39 @@
     .vqc-box{padding:32px 20px !important}
   }
 </style>
+<style>
+  /* 24 Sep 2026 blueprint refresh: group labels, video frame, status chips, step rows, the "root" line */
+  .vqc-group{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);margin:44px 0 14px;display:flex;align-items:center;gap:14px}
+  .vqc-group:first-of-type{margin-top:0}
+  .vqc-group::after{content:"";flex:1;height:1px;background:var(--hair)}
+  .vqc-video{position:relative;border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .vqc-video video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+  .vqc-vcap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)}
+  .vqc-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;align-self:flex-start}
+  .vqc-chip.on{border:1px solid var(--gold);color:var(--gold)}
+  .vqc-chip.part{border:1px solid rgba(227,214,180,.45);color:var(--gold2)}
+  .vqc-chip.soon{border:1px dashed rgba(230,238,248,.32);color:var(--fg-faint)}
+  .vqc-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .vqc-chips span{padding:6px 12px;border:1px solid var(--hair);border-radius:4px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--fg);background:var(--bg)}
+  .vqc-root{margin-top:40px;font-family:var(--display);font-style:italic;font-weight:400;font-size:17px;line-height:1.6;color:var(--fg-dim);max-width:780px;border-left:2px solid var(--gold);padding:4px 0 4px 20px}
+  .vqc-root b{font-style:normal;font-weight:600;color:var(--gold)}
+  .vqc-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .vqc-steps > div{background:var(--card);padding:22px 18px;display:flex;flex-direction:column;gap:8px}
+  .vqc-steps .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--gold)}
+  .vqc-steps .t{font-family:var(--display);font-weight:600;font-size:14.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)}
+  .vqc-steps .d{font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .vqc-list li{position:relative;padding-left:18px;font-family:var(--body);font-weight:300;font-size:14px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold)}
+  .vqc-list li b{font-weight:500;color:var(--fg)}
+  @media (max-width:1100px){ .vqc-steps{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:760px){
+    .vqc-steps{grid-template-columns:1fr}
+    .vqc-g2{grid-template-columns:1fr !important}
+    .vqc-root{font-size:15px}
+    .vqc-group{margin-top:32px}
+  }
+</style>
 </head>
 <body>
 
@@ -147,35 +180,37 @@
 </div>
 
 <!-- ================= SERVICES ================= -->
-<div class="section vqc-pad vqc-pad-y" id="services" style="min-height:760px;background:var(--bg);padding:96px 64px">
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:64px;max-width:640px">
+<div class="section vqc-pad vqc-pad-y" id="services" style="background:var(--bg);padding:96px 64px 72px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:56px;max-width:720px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Consulting Services</div>
     <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">Five disciplines. One compliance authority.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">We set the program up, write the procedures behind it, and run it on the same platform your crew uses in the field — so what the manual says and what the job records are the same thing.</div>
   </div>
 
   <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
 
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:16px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
         <rect x="6" y="4" width="18" height="23" rx="2"/>
         <path d="M11 4V3a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke-linecap="round"/>
         <path d="M10.5 15.5l3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">QMS Development</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">ISO 9001 · ASME stamp programs · QC Manuals · ITP authoring</div>
+      <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Program Setup &amp; QMS</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">Structure, policies, workflow, QC manuals and procedures written for how your shop and field really work · ISO 9001 · ASME stamp programs · ITP authoring</div>
+      <a href="#program" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">How we set it up →</a>
     </div>
 
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:16px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
         <circle cx="13" cy="13" r="9"/>
         <line x1="19.5" y1="19.5" x2="27" y2="27" stroke-linecap="round"/>
         <path d="M13 8.5v9M8.5 13h9" stroke-linecap="round"/>
       </svg>
       <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Code Compliance Audits</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">ASME Joint Review hosting · Zero-finding audit preparation · AIA liaison</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">ASME Joint Review hosting · Zero-finding audit preparation · AIA liaison · Findings tracked to closure, with the NCR and corrective action on record</div>
     </div>
 
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:16px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
         <path d="M5 25L18 12" stroke-linecap="round"/>
         <path d="M15 9l6 6" stroke-linecap="round"/>
@@ -183,10 +218,11 @@
         <circle cx="7.5" cy="22.5" r="2" fill="var(--gold)" stroke="none"/>
       </svg>
       <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">WPS / PQR / WPQ Programs</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">High-pressure / high-temp welding procedure development · Alloy specialists</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">Every welding process, every essential variable · Procedures written from their PQRs · High-pressure / high-temp and alloy specialists · Welders qualified and kept in continuity</div>
+      <a href="#wps" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">What's covered →</a>
     </div>
 
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:16px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
         <circle cx="15" cy="15" r="11"/>
         <path d="M15 15L21 9.5" stroke-linecap="round"/>
@@ -196,10 +232,10 @@
         <line x1="6" y1="15" x2="8.4" y2="15"/>
       </svg>
       <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Mechanical Integrity</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">API 510/570 in-service inspection · RBI · Fitness-for-service · Turnaround support</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">API 510/570 in-service inspection · RBI · Fitness-for-service · Turnaround support · NBIC repairs &amp; alterations</div>
     </div>
 
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:16px">
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3">
         <rect x="9" y="9" width="12" height="12" rx="1.5"/>
         <rect x="12.5" y="12.5" width="5" height="5" rx=".5"/>
@@ -209,17 +245,208 @@
         <line x1="24" y1="15" x2="27.5" y2="15" stroke-linecap="round"/>
       </svg>
       <div style="font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">AI Software Consulting</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">Custom QC platforms · Digital data books · Smart document routing · Proprietary tools</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">Custom QC platforms · Digital data books · Certificates and reports read page by page · Proprietary tools</div>
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--gold)">Also licensed standalone — monthly or annual</div>
     </div>
 
     <div class="vqc-card" style="background:linear-gradient(160deg, rgba(227,214,180,.10), transparent 60%), var(--card);padding:36px;display:flex;flex-direction:column;justify-content:center;gap:10px">
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">The Platform</div>
-      <div style="font-family:var(--display);font-weight:500;font-size:18px;line-height:1.35;color:var(--fg)">A field QC platform built from the field up — one digital data book, certificates read page by page, live weld traceability, ITP approvals in the app, audit reports as PDF.</div>
+      <div style="font-family:var(--display);font-weight:500;font-size:18px;line-height:1.35;color:var(--fg)">One digital data book for the whole job — certificates read page by page, live weld traceability, ITPs approved in the app, a numbered NCR register, and a turnover book that prints itself.</div>
       <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:14.5px;line-height:1.5;color:var(--fg-dim);margin-top:2px">If there's a code, there's a reference. If there's a client expectation, we'll help you make it happen.</div>
       <a href="platform.html" style="margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">See the platform →</a>
     </div>
 
+  </div>
+</div>
+
+<!-- ================= PROGRAM SETUP ================= -->
+<div class="section vqc-pad vqc-pad-y" id="program" style="background:var(--bg);padding:48px 64px 96px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">How Velocity Sets Up Your Program</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">Structure first. Then the policy, workflow and procedures that match it.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">We sit with your people, map how the work really moves from the shop to the field, and write the program around it — who is responsible, where the hold points are, what gets recorded and who signs. Then it runs on the platform, where every step is visible to the people who need to see it. That is how a process stays transparent and the result comes out satisfactory every time, not just on the good jobs.</div>
+  </div>
+
+  <div class="vqc-diagram" style="border:1px solid var(--hair);border-radius:6px;padding:36px 24px 28px;background:var(--card)">
+    <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
+    <svg viewBox="0 0 1160 330" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Program setup flow: assess, structure, policies, workflow, procedures, training, run on Velocity, with audit and improvement feeding back into policy">
+      <defs>
+        <marker id="pArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker>
+      </defs>
+      <text x="580" y="22" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="12" letter-spacing="2" fill="var(--gold)">ASSESS → STRUCTURE → POLICY → WORKFLOW → PROCEDURES → TRAINING → RUN</text>
+      <g font-family="Barlow, sans-serif">
+        <!-- seven steps -->
+        <g>
+          <rect x="30" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">01</text>
+          <text x="100" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">ASSESS</text>
+          <text x="100" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">How the work moves</text>
+          <text x="100" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">today, shop to field</text>
+          <text x="100" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">GAP REVIEW</text>
+        </g>
+        <g>
+          <rect x="190" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="260" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">02</text>
+          <text x="260" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">STRUCTURE</text>
+          <text x="260" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">Who is responsible,</text>
+          <text x="260" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">who reviews, who signs</text>
+          <text x="260" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">ORG CHART · RACI</text>
+        </g>
+        <g>
+          <rect x="350" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="420" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">03</text>
+          <text x="420" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">POLICIES</text>
+          <text x="420" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">Quality policy and</text>
+          <text x="420" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">who may see what</text>
+          <text x="420" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">QC MANUAL</text>
+        </g>
+        <g>
+          <rect x="510" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="580" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">04</text>
+          <text x="580" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">WORKFLOW</text>
+          <text x="580" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">ITPs, hold points</text>
+          <text x="580" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">and approval routes</text>
+          <text x="580" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">ITP SET</text>
+        </g>
+        <g>
+          <rect x="670" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="740" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">05</text>
+          <text x="740" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">PROCEDURES</text>
+          <text x="740" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">WPS/PQR, NDE, bolting,</text>
+          <text x="740" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">testing, instructions</text>
+          <text x="740" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">PROCEDURE MANUAL</text>
+        </g>
+        <g>
+          <rect x="830" y="50" width="140" height="120" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+          <text x="900" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">06</text>
+          <text x="900" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">TRAINING</text>
+          <text x="900" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">The code behind</text>
+          <text x="900" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">every step</text>
+          <text x="900" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">CREW SIGN-OFF</text>
+        </g>
+        <g>
+          <rect x="990" y="50" width="140" height="120" rx="4" fill="rgba(227,214,180,.10)" stroke="var(--gold)" stroke-width="1.7"/>
+          <text x="1060" y="72" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="2" fill="var(--fg-faint)">07</text>
+          <text x="1060" y="92" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="var(--gold)">RUN ON VELOCITY</text>
+          <text x="1060" y="112" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">Every record, seen by</text>
+          <text x="1060" y="127" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)">the right people</text>
+          <text x="1060" y="156" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="10" fill="var(--gold)">TURNOVER BOOK</text>
+        </g>
+        <!-- connectors -->
+        <g stroke="var(--gold)" stroke-width="1.3" fill="none" marker-end="url(#pArrow)">
+          <line x1="170" y1="110" x2="188" y2="110"/><line x1="330" y1="110" x2="348" y2="110"/><line x1="490" y1="110" x2="508" y2="110"/>
+          <line x1="650" y1="110" x2="668" y2="110"/><line x1="810" y1="110" x2="828" y2="110"/><line x1="970" y1="110" x2="988" y2="110"/>
+        </g>
+        <!-- improvement loop -->
+        <path d="M1060 170 V250 H842" stroke="var(--gold)" stroke-width="1.3" fill="none" stroke-dasharray="5,4" marker-end="url(#pArrow)"/>
+        <rect x="640" y="230" width="200" height="40" rx="4" fill="var(--bg)" stroke="var(--red)" stroke-width="1.3"/>
+        <text x="740" y="255" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--fg)">AUDIT &amp; IMPROVE</text>
+        <path d="M640 250 H420 V174" stroke="var(--gold)" stroke-width="1.3" fill="none" stroke-dasharray="5,4" marker-end="url(#pArrow)"/>
+        <text x="580" y="300" text-anchor="middle" font-size="12" fill="var(--fg-dim)">Findings, NCRs and corrective actions feed back into the policy — the program gets sharper with every job.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="vqc-g4" style="margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+    <div class="vqc-card" style="background:var(--card);padding:28px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Policies &amp; Responsibility</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A quality policy people can actually follow, one name on every responsibility, and access rules that decide who sees and signs what — written down, then enforced by the platform.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:28px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Workflow &amp; Hold Points</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">ITPs with a responsible person on every point, hold and witness points agreed before the first weld, and an approval route your customer signs inside the app.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:28px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Manuals &amp; Procedures</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">QC manual, welding, NDE, bolting and pressure-test procedures and work instructions that reflect the workflow — so the paper and the job say the same thing.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:28px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Transparent Records</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every step recorded where it happens, traced to the person who did it, and visible to the people granted to see it — the turnover book is built as the job goes.</div>
+    </div>
+  </div>
+
+  <div class="vqc-root">Look anywhere on this earth: every area was created with a structure, and every spot has its place. Set your work in place the same way — the way Velocity sets it — and success is not a hope. <b>It is the root.</b> This world was built on structure, and it will show.</div>
+</div>
+
+<!-- ================= WPS / PQR ================= -->
+<div class="section vqc-pad vqc-pad-y" id="wps" style="background:var(--bg);padding:48px 64px 96px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">WPS / PQR Programs</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">Every welding process. Every essential variable. Written to code.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">Each WPS is written from its supporting PQR. The qualified ranges are worked out from the test record, and every essential, supplementary essential and nonessential variable is checked against the governing code before the procedure is issued. Then it goes into your company library, where every job picks from it and every welder's qualification is tracked against it.</div>
+  </div>
+
+  <div class="vqc-g2" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);margin-bottom:28px">
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Processes</div>
+      <div class="vqc-chips"><span>SMAW</span><span>GTAW</span><span>GMAW</span><span>FCAW</span><span>SAW</span><span>PAW</span><span>ESW</span><span>EGW</span><span>OFW</span><span>Stud</span><span>Manual · machine · automatic</span><span>Combinations (e.g. GTAW root + SMAW fill)</span></div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:8px">Codes</div>
+      <div class="vqc-chips"><span>ASME IX</span><span>ASME VIII</span><span>ASME I</span><span>B31.1</span><span>B31.3</span><span>AWS D1.1</span><span>API 1104</span><span>NBIC</span></div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Variables on every procedure</div>
+      <ul class="vqc-list">
+        <li><b>Base metals</b> — P-No. and group, thickness and diameter ranges</li>
+        <li><b>Filler metals</b> — F-No., A-No., classification, size, deposit thickness</li>
+        <li><b>Joint, position &amp; progression</b> — groove design, backing, positions qualified</li>
+        <li><b>Preheat, interpass &amp; PWHT</b> — temperatures, time at temperature</li>
+        <li><b>Gas &amp; electrical</b> — shielding and backing gas, current, polarity, heat input</li>
+        <li><b>Technique</b> — string or weave, single or multi-pass, cleaning</li>
+        <li><b>Impact-tested work</b> — supplementary essential variables when toughness is required</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vqc-steps">
+    <div><div class="n">01</div><div class="t">PQR Test</div><div class="d">Coupon welded and tested; every value recorded as run.</div></div>
+    <div><div class="n">02</div><div class="t">Ranges Worked Out</div><div class="d">Thickness, diameter, P-No. and F-No. ranges from the test record.</div></div>
+    <div><div class="n">03</div><div class="t">WPS Issued</div><div class="d">Each variable checked against code, then signed and numbered.</div></div>
+    <div><div class="n">04</div><div class="t">Company Library</div><div class="d">Entered once for the company; every job picks from it.</div></div>
+    <div><div class="n">05</div><div class="t">Welders Qualified</div><div class="d">WPQ on file for each welder, process and position.</div></div>
+    <div><div class="n">06</div><div class="t">Continuity Tracked</div><div class="d">Worked out from the weld log itself — a lapsed stamp is flagged on the weld.</div></div>
+  </div>
+</div>
+
+<!-- ================= SHOP & SUBCONTRACTOR QA ================= -->
+<div class="section vqc-pad vqc-pad-y" id="subqa" style="background:var(--bg);padding:48px 64px 96px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Shop &amp; Subcontractor QA</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">The same structure for your own facility and every sub who works for you.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">In-house QA for your shop and QA over your subcontractors: their procedures reviewed, their uploads checked before they are accepted, their welders qualified and in continuity, their records filed in your turnover book. Welding was built first because it carries the most code weight — the other disciplines follow the same structure.</div>
+  </div>
+
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+    <div class="vqc-card" style="background:linear-gradient(160deg, rgba(227,214,180,.08), transparent 60%), var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip on">In place</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Welding &amp; Welded Fabrication</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">WPS/PQR library, welder qualification and continuity, weld log and weld map, NDE, PWHT, weld quality compliance (ISO 3834), NCRs — running on jobs today.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip on">In place</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Power Piping Fabrication</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">B31.1 and B31.3 ITP templates, spool and weld traceability, materials to the heat number, bolt-up and pressure testing to the turnover book.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip part">Welding in place · full package coming soon</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Pressure Vessels &amp; Towers</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Vessel and tower welding runs on the welding structure today. The vessel-specific records around it are being built on the same structure.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip soon">Coming soon</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Mechanical</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Equipment setting and mechanical completion. Flange bolt-up and pressure testing are already in place.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip soon">Coming soon</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Civil</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Foundations, concrete and structural steel inspection records on the same folder, with the same hold points and sign-offs.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:12px">
+      <span class="vqc-chip soon">Coming soon</span>
+      <div style="font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;color:var(--fg)">Instrumentation &amp; Electrical</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">I&amp;E installation and check-out records following the same structure: responsible person, hold point, record, sign-off.</div>
+    </div>
   </div>
 </div>
 
@@ -284,7 +511,7 @@
           </g>
         </svg>
         <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Access Granted</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Each client, sub, or admin sees exactly the sections they were granted — automatically, nothing more.</div>
+        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Each admin, crew member or customer sees exactly the sections they were granted — automatically, nothing more.</div>
       </div>
 
       <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
@@ -321,7 +548,21 @@
 </div>
 
 <!-- ================= PROOF ================= -->
-<div class="section vqc-pad vqc-pad-y" id="proof" style="min-height:900px;background:var(--bg);padding:96px 64px 110px;display:flex;flex-direction:column;gap:88px">
+<div class="section vqc-pad vqc-pad-y" id="proof" style="background:var(--bg);padding:96px 64px 110px;display:flex;flex-direction:column;gap:88px">
+
+  <div>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:36px;max-width:760px">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Proof · A Day On The Job</div>
+      <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">One spool, from the pipe rack to the hydro test.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">Walk-down and ITP, materials logged with no signal, a rejected fit-up, the weld map filling the weld log, the hydro test and its NCR — then the next job starting with the approved ITP already in place.</div>
+    </div>
+    <div class="vqc-video">
+      <video controls preload="none" playsinline poster="media/velocity-demo-poster.jpg">
+        <source src="media/velocity-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="vqc-vcap"><span>3 min 23 s · every screen is the real app</span><span>Demo · fictional job JOB-1001 · Company One</span></div>
+  </div>
 
   <div>
     <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:48px;max-width:640px">
@@ -336,8 +577,17 @@
       <div style="padding:26px 32px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">Field data trapped in paper packets and one inspector's memory</div>
       <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">A single digital data book, synced and auditable in real time</div>
 
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">Stacks of mill certificates sorted by hand, page by page</div>
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">Every page read — one row per heat, and the MTR package files itself</div>
+
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">ITPs emailed back and forth as PDFs, rebuilt for every job</div>
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">Approved in the app, filed as a signed PDF, carried to the next job</div>
+
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">Welder continuity checked from memory before an audit</div>
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">Continuity worked out from the weld log — a lapsed stamp is flagged on the weld</div>
+
       <div style="padding:26px 32px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">Findings status depends on who you ask and when</div>
-      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">Terminal results locked the moment they're filed — full audit trail</div>
+      <div style="padding:26px 32px;border-bottom:1px solid var(--hair);font-weight:400;font-size:16px;color:var(--fg)">Results locked when filed, and one numbered NCR register that never reuses a number</div>
 
       <div style="padding:26px 32px;border-right:1px solid var(--hair);font-weight:300;font-size:16px;color:var(--fg-dim)">Board review means re-building the story from scratch</div>
       <div style="padding:26px 32px;font-weight:400;font-size:16px;color:var(--fg)">A decade-long, zero-finding record ready to defend on request</div>

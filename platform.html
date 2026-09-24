@@ -68,6 +68,39 @@
     .vqc-box{padding:32px 20px !important}
   }
 </style>
+<style>
+  /* 24 Sep 2026 blueprint refresh: group labels, video frame, status chips, step rows, the "root" line */
+  .vqc-group{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);margin:44px 0 14px;display:flex;align-items:center;gap:14px}
+  .vqc-group:first-of-type{margin-top:0}
+  .vqc-group::after{content:"";flex:1;height:1px;background:var(--hair)}
+  .vqc-video{position:relative;border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .vqc-video video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+  .vqc-vcap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-faint)}
+  .vqc-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;align-self:flex-start}
+  .vqc-chip.on{border:1px solid var(--gold);color:var(--gold)}
+  .vqc-chip.part{border:1px solid rgba(227,214,180,.45);color:var(--gold2)}
+  .vqc-chip.soon{border:1px dashed rgba(230,238,248,.32);color:var(--fg-faint)}
+  .vqc-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .vqc-chips span{padding:6px 12px;border:1px solid var(--hair);border-radius:4px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--fg);background:var(--bg)}
+  .vqc-root{margin-top:40px;font-family:var(--display);font-style:italic;font-weight:400;font-size:17px;line-height:1.6;color:var(--fg-dim);max-width:780px;border-left:2px solid var(--gold);padding:4px 0 4px 20px}
+  .vqc-root b{font-style:normal;font-weight:600;color:var(--gold)}
+  .vqc-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .vqc-steps > div{background:var(--card);padding:22px 18px;display:flex;flex-direction:column;gap:8px}
+  .vqc-steps .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--gold)}
+  .vqc-steps .t{font-family:var(--display);font-weight:600;font-size:14.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)}
+  .vqc-steps .d{font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .vqc-list li{position:relative;padding-left:18px;font-family:var(--body);font-weight:300;font-size:14px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold)}
+  .vqc-list li b{font-weight:500;color:var(--fg)}
+  @media (max-width:1100px){ .vqc-steps{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:760px){
+    .vqc-steps{grid-template-columns:1fr}
+    .vqc-g2{grid-template-columns:1fr !important}
+    .vqc-root{font-size:15px}
+    .vqc-group{margin-top:32px}
+  }
+</style>
 </head>
 <body>
 
@@ -116,6 +149,20 @@
   </div>
 </div>
 
+<!-- ================= WATCH IT WORK ================= -->
+<div class="section vqc-pad vqc-pad-y" id="watch" style="padding:88px 64px 32px;background:var(--bg)">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;max-width:720px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Watch It Work</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">A day on the job, start to finish, in the real app.</div>
+  </div>
+  <div class="vqc-video">
+    <video controls preload="none" playsinline poster="media/velocity-demo-poster.jpg">
+      <source src="media/velocity-demo.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="vqc-vcap"><span>3 min 23 s · walk-down, materials, welding, weld map, hydro test, NCR, next job</span><span>Demo · fictional job JOB-1001 · Company One</span></div>
+</div>
+
 <!-- ================= ARCHITECTURE STACK ================= -->
 <div class="section vqc-pad vqc-pad-y" style="padding:96px 64px;background:var(--bg)">
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:56px;max-width:680px">
@@ -157,20 +204,20 @@
 
         <g font-family="Barlow, sans-serif">
           <rect x="40"  y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="140" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">STAFF</text>
-          <text x="140" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="140" dy="0">Full visibility across</tspan><tspan x="140" dy="16">every project in the org</tspan></text>
+          <text x="140" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">VELOCITY · OWNER</text>
+          <text x="140" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="140" dy="0">Runs the platform; only the</tspan><tspan x="140" dy="16">owner adds or removes a company</tspan></text>
 
           <rect x="293" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
           <text x="393" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CLIENT ADMIN</text>
-          <text x="393" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="393" dy="0">Invites their own team,</tspan><tspan x="393" dy="16">opens new work orders</tspan></text>
+          <text x="393" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="393" dy="0">Runs their jobs, invites crew</tspan><tspan x="393" dy="16">and customers, approves ITPs</tspan></text>
 
           <rect x="546" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="646" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CLIENT</text>
-          <text x="646" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="646" dy="0">Read-only access to their</tspan><tspan x="646" dy="16">whole project package</tspan></text>
+          <text x="646" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CREW / INSPECTOR</text>
+          <text x="646" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="646" dy="0">Fills in only the sections</tspan><tspan x="646" dy="16">they are given</tspan></text>
 
           <rect x="800" y="440" width="200" height="92" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="900" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">SUB-CONTRACTOR</text>
-          <text x="900" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="900" dy="0">Sees only the sections</tspan><tspan x="900" dy="16">explicitly granted to them</tspan></text>
+          <text x="900" y="466" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">CUSTOMER</text>
+          <text x="900" y="486" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)"><tspan x="900" dy="0">Sees only sections left on</tspan><tspan x="900" dy="16">VIEW — never changes anything</tspan></text>
         </g>
       </g>
 
@@ -200,7 +247,7 @@
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">2</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Sync Layer</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        The moment there's a connection, changes push up automatically — no "upload" button, no batch job someone has to remember to run. Nothing on the device is the permanent record; the device is just where the truth starts.
+        The moment there's a connection, changes push up automatically — no "upload" button, no batch job someone has to remember to run. Nothing on the device is the permanent record; the device is just where the truth starts. Offline edits are never silently lost — if two people change the same record the conflict is caught, a deleted row stays deleted, and an old copy on a device never overwrites the cloud.
       </div>
     </div>
 
@@ -209,7 +256,7 @@
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">3</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Secure Database</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        A real relational database (PostgreSQL), not a shared spreadsheet or a folder of files. Every table has row-level security — the database itself checks who's asking before it answers, on every single query, not just at the login screen.
+        A real relational database (PostgreSQL), not a shared spreadsheet or a folder of files. Every table has row-level security — the database itself checks who's asking before it answers, on every single query, not just at the login screen: 33 of 33 tables, 107 policies. A PASS/FAIL weld or a recorded NDE result cannot be deleted by crew, and deleted rows are archived, never just gone.
       </div>
     </div>
 
@@ -218,95 +265,304 @@
       <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">4</div>
       <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Role-Based Access</div>
       <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        Four kinds of accounts, each with a genuinely different view of the same job: our staff see everything; a client-side admin can invite their own inspectors and stand up new work orders once billing is active — never more than their own scope; a client sees their whole package, read-only; a sub sees only the sections they were explicitly granted.
+        Four kinds of accounts, each with a genuinely different view of the same job. Velocity, the owner, runs the platform and is the only one who can add, switch off or remove a company. A client admin runs their company's jobs, invites their own crew and customers and approves ITPs — never more than their own scope. Crew fill in only the sections they are given, every upload traced to them. A customer sees only the sections left on VIEW for them and cannot change anything.
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ================= WHAT'S ACTUALLY IN IT ================= -->
-<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:48px;max-width:680px">
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Inside The Platform</div>
-    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">What's actually built, not a roadmap.</div>
-    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Every item below is running on live jobs today. One build for everyone on the platform — when a tool gets sharper, every company has it on their next load.</div>
+<!-- ================= HOW A JOB MOVES (swimlane) ================= -->
+<div class="section vqc-pad vqc-pad-y" id="flow" style="padding:88px 64px 96px;background:var(--bg)">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;max-width:760px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">How A Job Moves</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Who does what, and what the folder does on its own.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Each lane is one kind of account. The gold lane is automatic: once a record is entered, the folder files it, checks it and holds the job if something doesn't line up.</div>
   </div>
 
-  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+  <div class="vqc-diagram" style="border:1px solid var(--hair);border-radius:6px;padding:28px 20px;background:var(--card)">
+    <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
+    <svg viewBox="0 0 1160 610" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Swimlane: client admin opens the job and ITP, customer approves, crew drops the MTR stack and welds, the folder reads certificates, logs welds and checks continuity, the pressure test passes to the turnover book or raises an NCR hold, and the approved ITP carries to the next job">
+      <defs>
+        <marker id="sArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker>
+        <marker id="sArrowR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--red)"/></marker>
+      </defs>
 
+      <!-- lanes -->
+      <g>
+        <rect x="0" y="40" width="1160" height="130" fill="var(--bg)"/>
+        <rect x="0" y="170" width="1160" height="130" fill="var(--card)"/>
+        <rect x="0" y="300" width="1160" height="130" fill="rgba(227,214,180,.05)"/>
+        <rect x="0" y="430" width="1160" height="130" fill="var(--bg)"/>
+        <g stroke="var(--hair)" stroke-width="1">
+          <rect x="0.5" y="0.5" width="1159" height="559.5" fill="none"/>
+          <line x1="0" y1="40" x2="1160" y2="40"/><line x1="0" y1="170" x2="1160" y2="170"/><line x1="0" y1="300" x2="1160" y2="300"/><line x1="0" y1="430" x2="1160" y2="430"/>
+          <line x1="120" y1="0" x2="120" y2="560"/>
+        </g>
+        <g stroke="var(--hair)" stroke-width="1" stroke-dasharray="2,6">
+          <line x1="334" y1="40" x2="334" y2="560"/><line x1="538" y1="40" x2="538" y2="560"/><line x1="742" y1="40" x2="742" y2="560"/><line x1="946" y1="40" x2="946" y2="560"/>
+        </g>
+      </g>
+
+      <!-- phase header + lane titles -->
+      <g font-family="Share Tech Mono, monospace" font-size="11" letter-spacing="2" text-anchor="middle">
+        <text x="60" y="26" fill="var(--fg-faint)">WHO</text>
+        <text x="232" y="26" fill="var(--gold)">SET UP</text>
+        <text x="436" y="26" fill="var(--gold)">MATERIALS</text>
+        <text x="640" y="26" fill="var(--gold)">FABRICATION</text>
+        <text x="844" y="26" fill="var(--gold)">TESTING</text>
+        <text x="1048" y="26" fill="var(--gold)">TURNOVER</text>
+      </g>
+      <g font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" text-anchor="middle" fill="var(--fg)">
+        <text x="60" y="100">CLIENT</text><text x="60" y="118">ADMIN</text>
+        <text x="60" y="230">INSPECTOR</text><text x="60" y="248">/ CREW</text>
+        <text x="60" y="356" fill="var(--gold)">VELOCITY</text><text x="60" y="374" fill="var(--gold)">FOLDER</text>
+        <text x="60" y="392" font-family="Share Tech Mono, monospace" font-size="9.5" font-weight="400" fill="var(--fg-faint)">AUTOMATIC</text>
+        <text x="60" y="490">CUSTOMER</text><text x="60" y="508" font-size="12" fill="var(--fg-dim)">OWNER REP</text>
+      </g>
+
+      <!-- connectors (drawn first so the boxes sit on top) -->
+      <g stroke="var(--gold)" stroke-width="1.3" fill="none" marker-end="url(#sArrow)">
+        <path d="M232 131 V467"/>
+        <path d="M317 495 H334 V235 H349"/>
+        <path d="M436 261 V337"/>
+        <path d="M521 365 H538 V235 H553"/>
+        <path d="M640 261 V337"/>
+        <path d="M725 365 H742 V235 H757"/>
+        <path d="M844 261 V329"/>
+        <path d="M902 365 H961"/>
+        <path d="M1048 391 V467"/>
+        <path d="M1048 339 V133"/>
+      </g>
+      <path d="M844 399 V467" stroke="var(--red)" stroke-width="1.3" fill="none" marker-end="url(#sArrowR)"/>
+      <path d="M929 495 H946 V371 A6 6 0 0 0 946 359 V235 H931" stroke="var(--red)" stroke-width="1.3" fill="none" stroke-dasharray="5,4" marker-end="url(#sArrowR)"/>
+
+      <g font-family="Share Tech Mono, monospace" font-size="10" letter-spacing="1" fill="var(--fg-faint)">
+        <text x="240" y="305">SUBMIT REV 0</text>
+        <text x="340" y="420">APPROVED</text>
+        <text x="912" y="356" fill="var(--gold)">YES</text>
+        <text x="852" y="440" fill="var(--red)">NO</text>
+        <text x="952" y="290" fill="var(--red)">FIX ·</text><text x="952" y="303" fill="var(--red)">RE-TEST</text>
+        <text x="1056" y="228">CARRIED</text><text x="1056" y="241">FORWARD</text>
+      </g>
+
+      <!-- nodes -->
+      <g font-family="Barlow, sans-serif" text-anchor="middle">
+        <!-- client admin -->
+        <rect x="147" y="79" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="232" y="101" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">OPEN JOB · SET ITP</text>
+        <text x="232" y="119" font-size="11" fill="var(--fg-dim)">ITP from the company library</text>
+
+        <rect x="963" y="79" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="1048" y="101" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">NEXT JOB STARTS READY</text>
+        <text x="1048" y="119" font-size="11" fill="var(--fg-dim)">ITP, WPS and welders carried</text>
+
+        <!-- note in the admin lane -->
+        <path d="M555 76 H915 V122 L903 134 H555 Z" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
+        <path d="M915 122 H903 V134" fill="none" stroke="var(--hair)" stroke-width="1.2"/>
+        <text x="735" y="99" font-size="11.5" fill="var(--fg-dim)">Every hold shows on the admin's Job Flow board</text>
+        <text x="735" y="116" font-size="11.5" fill="var(--fg-dim)">and in NEEDS ATTENTION until someone deals with it.</text>
+
+        <!-- crew -->
+        <rect x="351" y="209" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="436" y="231" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">DROP THE MTR STACK</text>
+        <text x="436" y="249" font-size="11" fill="var(--fg-dim)">Photos or PDFs, even offline</text>
+
+        <rect x="555" y="209" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="640" y="231" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">FIT-UP · WELD · STAMP</text>
+        <text x="640" y="249" font-size="11" fill="var(--fg-dim)">On the drawing or the weld log</text>
+
+        <rect x="759" y="209" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="844" y="231" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">PRESSURE TEST</text>
+        <text x="844" y="249" font-size="11" fill="var(--fg-dim)">Pack, gauge cert, chart disc</text>
+
+        <!-- folder (automatic) -->
+        <rect x="351" y="339" width="170" height="52" rx="4" fill="rgba(227,214,180,.10)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="436" y="361" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--gold)">EVERY PAGE READ</text>
+        <text x="436" y="379" font-size="11" fill="var(--fg-dim)">One row per heat · MTR package</text>
+
+        <rect x="555" y="339" width="170" height="52" rx="4" fill="rgba(227,214,180,.10)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="640" y="361" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--gold)">WELD LOG · NDE</text>
+        <text x="640" y="379" font-size="11" fill="var(--fg-dim)">Welder continuity checked</text>
+
+        <path d="M844 331 L902 365 L844 399 L786 365 Z" fill="rgba(227,214,180,.10)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="844" y="369" font-family="Barlow Condensed, sans-serif" font-size="13" font-weight="600" letter-spacing="1" fill="var(--gold)">ALL PASS?</text>
+
+        <rect x="963" y="339" width="170" height="52" rx="4" fill="rgba(227,214,180,.10)" stroke="var(--gold)" stroke-width="1.6"/>
+        <text x="1048" y="361" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--gold)">TURNOVER BOOK</text>
+        <text x="1048" y="379" font-size="11" fill="var(--fg-dim)">Prints itself, index first</text>
+
+        <!-- customer -->
+        <rect x="147" y="469" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="232" y="491" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">APPROVE ITP</text>
+        <text x="232" y="509" font-size="11" fill="var(--fg-dim)">Signed PDF filed in the job</text>
+
+        <path d="M380 470 H712 V508 L700 520 H380 Z" fill="var(--card)" stroke="var(--hair)" stroke-width="1.2"/>
+        <path d="M712 508 H700 V520" fill="none" stroke="var(--hair)" stroke-width="1.2"/>
+        <text x="546" y="491" font-size="11.5" fill="var(--fg-dim)">Sees only the sections left on VIEW —</text>
+        <text x="546" y="508" font-size="11.5" fill="var(--fg-dim)">read-only, never another job's records.</text>
+
+        <rect x="759" y="469" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--red)" stroke-width="1.4"/>
+        <text x="844" y="491" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">HOLD + NCR</text>
+        <text x="844" y="509" font-size="11" fill="var(--fg-dim)">Numbered once, tracked to close</text>
+
+        <rect x="963" y="469" width="170" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
+        <text x="1048" y="491" font-family="Barlow Condensed, sans-serif" font-size="13.5" font-weight="600" letter-spacing="1" fill="var(--fg)">TURNOVER PACKAGE</text>
+        <text x="1048" y="509" font-size="11" fill="var(--fg-dim)">The sections they were given</text>
+      </g>
+
+      <text x="580" y="594" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="11" letter-spacing="1" fill="var(--fg-faint)">EVERY BOX WRITES THE SAME JOB RECORD — THE LANES ONLY SHOW WHO ACTS</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ================= WHAT'S ACTUALLY IN IT ================= -->
+<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;max-width:720px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Inside The Platform</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">What's actually built, not a roadmap.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Every item below is running on live jobs today, grouped the way the folder is organised. One build for everyone on the platform — when a tool gets sharper, every company has it on their next load.</div>
+  </div>
+
+  <div class="vqc-group">Field records</div>
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="18" height="23" rx="2"/><path d="M10.5 15.5l3 3 6-6.5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Weld Traceability</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every weld logged with size, process, welder stamp, NDE method and result — completion tracked in diameter-inches, the unit the industry actually measures. The welder's stencil and date sit on the field-weld mark; an NDE stamp placed near a weld on the drawing writes the weld log and the NDE register itself. Repairs, cut-outs and tracers keep their own rows.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every weld with size, schedule, material, process, WPS, welder stamps, NDE method and result — completion tracked in diameter-inches. Repairs, cut-outs and tracers keep their own rows; rejects stay visible until they are cleared.</div>
     </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M15 2.5V6M15 24v3.5M2.5 15H6M24 15h3.5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Isometric Drawings, Live</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Load an IFC PDF, a photo of a marked-up print, or sketch on a true isometric grid. Markers carry real data — edit the mark and the log updates, edit the log and the drawing follows. A legend that learns the job's own words, pick-up callouts, multi-sheet, your own symbol library, sign-off built in.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Load an IFC PDF, a photo of a marked-up print, or sketch on a true isometric grid. Marks carry real data: the welder's stencil and date on the field weld, an NDE stamp that writes the weld log and NDE register, a legend that learns the job's own words.</div>
     </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h10l5 5v17H8z"/><path d="M18 4v5h5"/><path d="M11 14h8M11 18h8M11 22h5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Certificates Read For You</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Drop a stack of mill certificates. Every page is read: one row per heat, duplicate pages set aside, sideways pages turned and retried, unreadable pages come up on screen to be typed. The MTR INDEX and the MTR PACKAGE file themselves as PDFs; rod and wire certificates go to Filler Metal.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Drop a stack of mill certificates. Every page is read: one row per heat, the same heat on many components, sideways pages turned, unreadable pages brought up to be typed, skipped pages held until someone deals with them. The MTR index and package file themselves.</div>
     </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 25V15M15 25V6M23 25V18"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Bolt-Up &amp; Pressure Testing</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Flange-by-flange torque log with the real 30%/60%/final sequence, wrench serials and acceptance dates. Hydro and pneumatic packs with pass/fail; the chart-recorder disc is read into the pack, gauge certificates are checked for expiry, and a test boundary drawn on the sheet fills the pack's weld scope.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Flange-by-flange torque log with the 30% / 60% / final sequence. Hydro and pneumatic packs: the chart disc is read into the pack, gauge certificates are checked for expiry, and a test boundary drawn on the sheet fills the pack's weld scope.</div>
     </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="22" height="17" rx="2"/><circle cx="11" cy="13" r="2.4"/><path d="M4 21l7-6 5 4 4-3 6 5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Docs, Photos &amp; Vendor Uploads</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One cabinet for drawings, reports, photos and certificates. Every upload is traced to a person; a fabricator's or vendor's upload lands as needs-review until someone accepts it — or rejects it with a reason they are told about.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="18" height="21" rx="2"/><path d="M10 11h10M10 15h10M10 19h6"/><path d="M11 3v4M19 3v4"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Daily Reports</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">What happened each day — people on site, work performed, issues, progress — with the NCRs raised that day counted in from the register, and every report kept in the history.</div>
+    </div>
+  </div>
 
+  <div class="vqc-group">Control &amp; approval</div>
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="20" height="18" rx="2"/><path d="M9 12h12M9 16h8"/><path d="M17 20l2 2 4-4"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">ITP Approvals In The App</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A responsible person on every inspection point. Submitting freezes a numbered revision; the client's admin approves or asks for changes on a banner; the approved copy prints with its stamp. Edits after approval bump the revision automatically — no emailed PDFs going back and forth.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A responsible person on every inspection point. Submitting freezes a numbered revision; the client's admin approves or asks for changes; every approved revision is filed as a signed PDF. Edits after approval bump the revision automatically.</div>
     </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h22"/><path d="M4 22V10h5v12M12.5 22V6h5v16M21 22v-8h5v8"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Job Flow Board</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Nine stages — drawings, materials, welding, NDE, test, coating, installation, pre-commissioning, turnover — read live from the folder. A failed weld or pack, a drawing revised under its welds, or an ITP still waiting turns its stage yellow. Percent per stage and progress over time, on one board.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Nine stages — drawings, materials, welding, NDE, test, coating, installation, pre-commissioning, turnover — read live from the folder. A failed weld or pack, a revised drawing or an ITP still waiting turns its stage yellow. Stages you don't use drop out.</div>
     </div>
-
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 15L21 9.5"/><circle cx="15" cy="15" r="1.8" fill="var(--gold)" stroke="none"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">One Completion Number</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Welding, bolt-up, and pressure testing each contribute a weighted share to one overall physical-completion percentage — the number a project manager actually wants, computed live instead of assembled by hand before a meeting.</div>
-    </div>
-
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h16v22H7z"/><path d="M11 9h8M11 13h8M11 17h5"/><circle cx="21" cy="21" r="4" fill="var(--bg)"/><path d="M19.5 21l1 1 2-2"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Quality Audit Per Item</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Eleven audit items rated on their own — welding, NDE, materials, WPS/WPQ, PWHT, pressure test, ISO 3834, NCR, equipment, closeout. The verdict follows the ratings. Numbered reports, a real PDF built on the device, sent to the job's people and filed in Docs &amp; Photos, every report kept in the history.</div>
-    </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l12 21H3z"/><path d="M15 12v6"/><circle cx="15" cy="21" r=".9" fill="var(--gold)"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Needs Attention</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One list for every mismatch the folder finds on its own: a welder stencil with no qualification on file, bolt-up marks without a torque log, a drawing revised under its welds, a certificate page that was skipped. Each item holds the flow until someone deals with it — and records who did.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One list for every mismatch the folder finds on its own: a stencil with no qualification, bolt-up marks without a torque log, a drawing revised under its welds, a certificate page that was skipped. Each item holds the flow until someone deals with it — and records who did.</div>
     </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="20" height="22" rx="2"/><path d="M9 10h12M9 14h12M9 18h7"/><path d="M20 20l3 3M23 20l-3 3" stroke="var(--red)"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">One NCR Register</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One numbered register for the whole job. A number is never reused and nothing is deleted — a mistake becomes VOID. Critical and major audit findings raise their NCR themselves and close it when the finding closes. It prints with the package.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h16v22H7z"/><path d="M11 9h8M11 13h8M11 17h5"/><circle cx="21" cy="21" r="4" fill="var(--bg)"/><path d="M19.5 21l1 1 2-2"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Audit &amp; Safety Reports</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Built around findings: severity, type of harm, work impact and status, with a photo or a marked-up clause attached. Numbered reports, a real PDF built on the device, sent to the job's people and kept in the history.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 15L21 9.5"/><circle cx="15" cy="15" r="1.8" fill="var(--gold)" stroke="none"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Physical Completion</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Shop welding inches, field welding inches (live from the weld log when left blank), flange assembly percent and pressure-test packages passed — one plain overall number everyone on the job sees the same way.</div>
+    </div>
+  </div>
 
+  <div class="vqc-group">Welding program</div>
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="10" r="4.5"/><path d="M3 25a8 8 0 0 1 16 0"/><path d="M19 15l2.5 2.5L27 12"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Welder Qualification &amp; Continuity</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One welder log per job. Continuity is worked out from the welds themselves — every dated weld by that stamp and process extends it — and a weld made after a lapse, before qualification or outside the process is flagged. A continuity report prints per welder.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 25L18 12"/><path d="M15 9l6 6"/><path d="M20 4l6 6-3.5 1-3.5-3.5z"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">WPS &amp; PQR Library</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">WPSs and their supporting PQRs are entered once for the company and picked by every job. A WPS number used on the weld log but not on file is flagged before anyone has to find it in an audit.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="22" height="20" rx="2"/><path d="M8 11h3M8 16h3M8 21h3"/><path d="M14 11h8M14 16h8M14 21h5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Weld Quality Compliance</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">An ISO 3834 compliance status read live from the tabs that own each topic — welders, WPS, filler metal, MTRs, PWHT, NDE, pressure tests, ITP, calibration, NCRs, records — each marked OK, CHECK or PROBLEM, with a button straight to where it's fixed.</div>
+    </div>
+  </div>
+
+  <div class="vqc-group">Company &amp; people</div>
+  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h6v19H5zM12 6h6v19h-6z"/><path d="M19.5 7l5.5 1.5-4.5 17-5.5-1.5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Company Library</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Approved ITPs, WPSs and welders belong to the company, not one job. The next job starts ready: the ITP carries over marked as carried, welder continuity follows across every job, and every change goes into the library's history.</div>
+    </div>
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="22" height="16" rx="2"/><path d="M4 10l11 7 11-7"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Who Sees What</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A client admin runs their own jobs and invites their own crew and customers. Crew fill in only the sections they're given; a customer sees only the sections left on VIEW and never changes anything. Invite links expire; notices go to the person they are meant for.</div>
+    </div>
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
       <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V4h14v8"/><rect x="4" y="12" width="22" height="9" rx="1.5"/><path d="M8 17v9h14v-9"/><path d="M11 21h8M11 24h5"/></svg>
       <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Printed In Your Brand</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">The data book prints under your company's logo and name, not ours: cover, index and every section page stamped with the job, a confidential line at the foot of every sheet. Your own cover, your own section names, only the sections you use — nineteen when you want them all.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">The turnover book prints under your company's logo and name: cover, index and every section page stamped with the job. Your own cover, your own section names, only the sections you use — nineteen when you want them all.</div>
     </div>
-
     <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="22" height="16" rx="2"/><path d="M4 10l11 7 11-7"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Invite Your Own Team</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Once your account is active, add your own inspectors and stand up new work orders yourself. Invite links expire; every upload is traced to a person; notices and an activity history say who did what and when. Company exports and a monthly backup are yours to download.</div>
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4v14M9 12l6 6 6-6"/><path d="M5 20v5h20v-5"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Backups, Exports &amp; Sharing</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A monthly backup of every company's records, exports on request, and a share page for chosen sections and dates whose document links expire after seven days.</div>
     </div>
-
+    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
+      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 9v6l4 3"/></svg>
+      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Activity &amp; Notices</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A history that names the person behind every change, prints with the package, and notices for approvals, holds, shared packages and rejected uploads — so nobody has to ask what happened.</div>
+    </div>
     <div class="vqc-card" style="background:linear-gradient(160deg, rgba(227,214,180,.10), transparent 60%), var(--card);padding:32px;display:flex;flex-direction:column;justify-content:center;gap:10px">
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">The Point</div>
       <div style="font-family:var(--display);font-weight:500;font-size:16.5px;line-height:1.4;color:var(--fg)">Every one of these tools reads and writes the same underlying record.</div>
-      <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the Job Flow board, in the completion scorecard, and in the log — all at once, because it's one system, not a dozen that happen to share a login page.</div>
+      <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the Job Flow board, in the completion number and in the log — all at once, because it's one system, not a dozen that happen to share a login page.</div>
     </div>
+  </div>
+</div>
 
+<!-- ================= DISCIPLINES ================= -->
+<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
+  <div class="vqc-box" style="border:1px solid var(--hair);border-radius:6px;padding:40px 44px;background:var(--card);display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Disciplines</div>
+      <div style="font-family:var(--display);font-weight:600;font-size:26px;line-height:1.2;color:var(--fg)">Welding is in place. The other trades are being built on the same structure.</div>
+      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">For your in-house shop and for QA over your subcontractors.</div>
+    </div>
+    <div class="vqc-chips">
+      <span style="border-color:var(--gold);color:var(--gold)">Welding &amp; welded fabrication · in place</span>
+      <span style="border-color:var(--gold);color:var(--gold)">Power piping fabrication · in place</span>
+      <span style="border-color:rgba(227,214,180,.45);color:var(--gold2)">Pressure vessels &amp; towers · welding in place</span>
+      <span style="border-style:dashed;color:var(--fg-faint)">Mechanical · coming soon</span>
+      <span style="border-style:dashed;color:var(--fg-faint)">Civil · coming soon</span>
+      <span style="border-style:dashed;color:var(--fg-faint)">I&amp;E · coming soon</span>
+    </div>
+    <a href="home.html#subqa" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">Shop &amp; subcontractor QA →</a>
   </div>
 </div>
 
@@ -318,6 +574,7 @@
     <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);max-width:760px">
       This industry doesn't slow down for anyone. Every reference, every logged weld, every drawing markup on this platform is built to double as a training tool — so the people learning under you actually understand the code, not just check a box. That's the difference between running inspections and building a team that outlasts any one job. Velocity isn't just the pace of the work — it's what happens when a crew stops guessing and starts knowing.
     </div>
+    <div class="vqc-root" style="margin-top:28px">Every area on this earth was created with a structure, and every spot has its place. Set your work in place the way Velocity sets it, and success is not a hope — <b>it is the root.</b></div>
   </div>
 </div>
 
@@ -326,7 +583,7 @@
   <div class="vqc-g4" style="border-top:1px solid var(--hair);padding-top:32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px">
     <div>
       <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Row-Level Access</div>
-      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every table checks who you are before it answers — nothing is open by default.</div>
+      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every table (33 of 33) checks who you are before it answers — nothing is open by default.</div>
     </div>
     <div>
       <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Encrypted, Always</div>
@@ -340,86 +597,22 @@
       <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Segmented By Project</div>
       <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every project and grant is access-controlled at the row level — your data, walled off from every other client's.</div>
     </div>
-  </div>
-</div>
-
-<!-- ================= GETTING STARTED ================= -->
-<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;max-width:680px">
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Getting Started</div>
-    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">Two ways to start. One point of contact the whole way through.</div>
-  </div>
-
-  <div class="vqc-diagram" style="border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
-    <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
-    <svg viewBox="0 0 1150 700" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
-      <g font-family="Barlow Condensed, sans-serif">
-        <rect x="455" y="30" width="240" height="52" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.4"/>
-        <text x="575" y="52" text-anchor="middle" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">KICKOFF CALL</text>
-        <text x="575" y="70" text-anchor="middle" font-size="12" fill="var(--fg-dim)" font-family="Barlow, sans-serif">Scope the job, confirm fit</text>
-
-        <line x1="530" y1="82" x2="350" y2="140" stroke="var(--gold)" stroke-width="1.3" marker-end="url(#arrow2)"/>
-        <line x1="620" y1="82" x2="800" y2="140" stroke="var(--gold)" stroke-width="1.3" marker-end="url(#arrow2)"/>
-
-        <rect x="190" y="140" width="320" height="92" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
-        <text x="350" y="168" text-anchor="middle" font-size="14.5" font-weight="600" letter-spacing="1" fill="var(--fg)">PAY BY PURCHASE ORDER</text>
-        <g font-family="Barlow, sans-serif" font-size="11.5" fill="var(--fg-dim)">
-          <text x="350" y="188" text-anchor="middle">Standard for EPCs &amp; fabricators.</text>
-          <text x="350" y="204" text-anchor="middle">Issue a PO, net terms invoiced</text>
-          <text x="350" y="220" text-anchor="middle">against milestones.</text>
-        </g>
-
-        <rect x="640" y="140" width="320" height="92" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.3"/>
-        <text x="800" y="168" text-anchor="middle" font-size="14.5" font-weight="600" letter-spacing="1" fill="var(--fg)">PAY BY CREDIT CARD</text>
-        <g font-family="Barlow, sans-serif" font-size="11.5" fill="var(--fg-dim)">
-          <text x="800" y="188" text-anchor="middle">Fastest way to start. Charged</text>
-          <text x="800" y="204" text-anchor="middle">monthly or per-project,</text>
-          <text x="800" y="220" text-anchor="middle">cancel anytime.</text>
-        </g>
-
-        <line x1="440" y1="232" x2="500" y2="270" stroke="var(--gold)" stroke-width="1.3" marker-end="url(#arrow2)"/>
-        <line x1="710" y1="232" x2="650" y2="270" stroke="var(--gold)" stroke-width="1.3" marker-end="url(#arrow2)"/>
-
-        <rect x="355" y="270" width="440" height="56" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.5"/>
-        <text x="575" y="294" text-anchor="middle" font-size="15" font-weight="600" letter-spacing="1" fill="var(--fg)">ACCOUNT ACTIVATED</text>
-        <text x="575" y="312" text-anchor="middle" font-size="11.5" fill="var(--fg-dim)" font-family="Barlow, sans-serif">Your project is live in the platform within 24 hours</text>
-
-        <line x1="440" y1="326" x2="280" y2="368" stroke="var(--gold)" stroke-width="1.2" marker-end="url(#arrow2)"/>
-        <line x1="575" y1="326" x2="575" y2="368" stroke="var(--gold)" stroke-width="1.2" marker-end="url(#arrow2)"/>
-        <line x1="710" y1="326" x2="870" y2="368" stroke="var(--gold)" stroke-width="1.2" marker-end="url(#arrow2)"/>
-
-        <g font-family="Barlow, sans-serif">
-          <rect x="150" y="368" width="260" height="88" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="280" y="394" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">ONBOARDING</text>
-          <text x="280" y="414" text-anchor="middle" font-size="11" fill="var(--fg-dim)"><tspan x="280" dy="0">Templates set up, your team</tspan><tspan x="280" dy="15">invited, first inspectors trained</tspan></text>
-
-          <rect x="445" y="368" width="260" height="88" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="575" y="394" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">LIVE ON THE JOB</text>
-          <text x="575" y="414" text-anchor="middle" font-size="11" fill="var(--fg-dim)"><tspan x="575" dy="0">Welds, bolt-up, hydro tracked</tspan><tspan x="575" dy="15">in real time from day one</tspan></text>
-
-          <rect x="740" y="368" width="260" height="88" rx="4" fill="var(--bg)" stroke="var(--hair)" stroke-width="1.2"/>
-          <text x="870" y="394" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" letter-spacing="1" fill="var(--gold)">SCALE UP</text>
-          <text x="870" y="414" text-anchor="middle" font-size="11" fill="var(--fg-dim)"><tspan x="870" dy="0">Add projects and inspectors</tspan><tspan x="870" dy="15">yourself, anytime</tspan></text>
-        </g>
-
-        <line x1="280" y1="456" x2="280" y2="500" stroke="var(--gold)" stroke-width="1.1" stroke-dasharray="4,3"/>
-        <line x1="575" y1="456" x2="575" y2="500" stroke="var(--gold)" stroke-width="1.1" stroke-dasharray="4,3"/>
-        <line x1="870" y1="456" x2="870" y2="500" stroke="var(--gold)" stroke-width="1.1" stroke-dasharray="4,3"/>
-
-        <rect x="150" y="500" width="850" height="104" rx="4" fill="var(--bg2)" stroke="var(--gold)" stroke-width="1.7"/>
-        <text x="575" y="530" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="1" fill="var(--fg)">24/7 SUPPORT, DIRECTLY FROM ME</text>
-        <g font-family="Barlow, sans-serif" font-size="12" fill="var(--fg-dim)">
-          <text x="575" y="554" text-anchor="middle">Not a ticket queue. If a weld gets flagged at 2 AM or an auditor needs an answer on a Sunday,</text>
-          <text x="575" y="572" text-anchor="middle">you call and I answer — every project, for as long as you're running on the platform.</text>
-        </g>
-      </g>
-
-      <defs>
-        <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
-        </marker>
-      </defs>
-    </svg>
+    <div>
+      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Files Kept Private</div>
+      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Job files sit in private storage. A shared document link expires after seven days.</div>
+    </div>
+    <div>
+      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Results That Stay Put</div>
+      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">PASS/FAIL welds and recorded NDE results can't be deleted by crew; deleted rows are archived.</div>
+    </div>
+    <div>
+      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Nothing Lost Offline</div>
+      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Edits made without signal upload when it returns; conflicting changes are caught, not overwritten.</div>
+    </div>
+    <div>
+      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Monthly Backup</div>
+      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every company's records are backed up on the 1st of each month, and exports are yours on request.</div>
+    </div>
   </div>
 </div>
 
