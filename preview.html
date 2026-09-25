@@ -101,6 +101,16 @@
     .vqc-group{margin-top:32px}
   }
 </style>
+<style>
+  /* 24 Sep 2026 trim: WPS/PQR selling points */
+  .vqc-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .vqc-tiles > div{background:var(--card);padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+  .vqc-tiles .t{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)}
+  .vqc-tiles .d{font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-tiles .s{font-family:var(--body);font-weight:500;font-size:13px;line-height:1.45;color:var(--gold)}
+  @media (max-width:1000px){ .vqc-tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:560px){ .vqc-tiles{grid-template-columns:1fr} .vqc-tiles > div{padding:16px 18px} }
+</style>
 </head>
 <body>
 
@@ -371,40 +381,33 @@
 
 <!-- ================= WPS / PQR ================= -->
 <div class="section vqc-pad vqc-pad-y" id="wps" style="background:var(--bg);padding:48px 64px 96px">
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;max-width:760px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">WPS / PQR Programs</div>
-    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">Every welding process. Every essential variable. Written to code.</div>
-    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">Each WPS is written from its supporting PQR. The qualified ranges are worked out from the test record, and every essential, supplementary essential and nonessential variable is checked against the governing code before the procedure is issued. Then it goes into your company library, where every job picks from it and every welder's qualification is tracked against it.</div>
+    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">Your WPS and PQR, <span style="color:var(--gold)">already built to code.</span></div>
+    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">The code foundation is set before anyone starts. Write the WPS, record the PQR — the ranges, the checks and the documents follow. Less engineering time, fewer tests, fewer mistakes.</div>
   </div>
 
-  <div class="vqc-g2" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);margin-bottom:28px">
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Processes</div>
-      <div class="vqc-chips"><span>SMAW</span><span>GTAW</span><span>GMAW</span><span>FCAW</span><span>SAW</span><span>PAW</span><span>ESW</span><span>EGW</span><span>OFW</span><span>Stud</span><span>Manual · machine · automatic</span><span>Combinations (e.g. GTAW root + SMAW fill)</span></div>
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:8px">Codes</div>
-      <div class="vqc-chips"><span>ASME IX</span><span>ASME VIII</span><span>ASME I</span><span>B31.1</span><span>B31.3</span><span>AWS D1.1</span><span>API 1104</span><span>NBIC</span></div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:36px;display:flex;flex-direction:column;gap:18px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Variables on every procedure</div>
-      <ul class="vqc-list">
-        <li><b>Base metals</b> — P-No. and group, thickness and diameter ranges</li>
-        <li><b>Filler metals</b> — F-No., A-No., classification, size, deposit thickness</li>
-        <li><b>Joint, position &amp; progression</b> — groove design, backing, positions qualified</li>
-        <li><b>Preheat, interpass &amp; PWHT</b> — temperatures, time at temperature</li>
-        <li><b>Gas &amp; electrical</b> — shielding and backing gas, current, polarity, heat input</li>
-        <li><b>Technique</b> — string or weave, single or multi-pass, cleaning</li>
-        <li><b>Impact-tested work</b> — supplementary essential variables when toughness is required</li>
-      </ul>
-    </div>
+  <div class="vqc-video">
+    <video controls preload="none" playsinline poster="media/velocity-wpspqr-poster.jpg">
+      <source src="media/velocity-wpspqr.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="vqc-vcap" style="margin-bottom:36px"><span>3 min 21 s · WPS, PQR, welder test, client changes</span><span>Demo · fictional data · Company One Fabrication</span></div>
+
+  <div class="vqc-group">Why it cuts cost</div>
+  <div class="vqc-tiles" style="margin-bottom:28px">
+    <div><div class="t">Start from the foundation</div><div class="d">ASME IX, AWS D1.1 and API 1104 are built in. No blank page, no old copy to fix.</div><div class="s">Less engineering time on every procedure.</div></div>
+    <div><div class="t">The numbers fill themselves in</div><div class="d">Pick SA-106 B and it knows P-No. 1. Pick E7018 and it knows F-4.</div><div class="s">Fewer look-ups, fewer errors that send a procedure back.</div></div>
+    <div><div class="t">Get the most out of every test</div><div class="d">Full ranges per QW-451 and QW-424, worked out from one coupon.</div><div class="s">Fewer coupons, fewer lab bills.</div></div>
+    <div><div class="t">Caught before the field</div><div class="d">Every variable checked against the PQR before the WPS is issued.</div><div class="s">Less rework — problems found on screen, not in the weld.</div></div>
+    <div><div class="t">Client changes without guesswork</div><div class="d">Nonessential: a new revision on the same PQR. Essential: a new PQR flagged before anyone welds.</div><div class="s">No unnecessary tests, no surprises later.</div></div>
+    <div><div class="t">Welders on the right WPS</div><div class="d">Tested to the WPS — ranges, certificate, continuity and who-can-weld-what kept current.</div><div class="s">No lapsed welder on the job, no digging through binders.</div></div>
   </div>
 
-  <div class="vqc-steps">
-    <div><div class="n">01</div><div class="t">PQR Test</div><div class="d">Coupon welded and tested; every value recorded as run.</div></div>
-    <div><div class="n">02</div><div class="t">Ranges Worked Out</div><div class="d">Thickness, diameter, P-No. and F-No. ranges from the test record.</div></div>
-    <div><div class="n">03</div><div class="t">WPS Issued</div><div class="d">Each variable checked against code, then signed and numbered.</div></div>
-    <div><div class="n">04</div><div class="t">Company Library</div><div class="d">Entered once for the company; every job picks from it.</div></div>
-    <div><div class="n">05</div><div class="t">Welders Qualified</div><div class="d">WPQ on file for each welder, process and position.</div></div>
-    <div><div class="n">06</div><div class="t">Continuity Tracked</div><div class="d">Worked out from the weld log itself — a lapsed stamp is flagged on the weld.</div></div>
+  <div class="vqc-card" style="background:var(--card);border:1px solid var(--hair);padding:24px 28px;display:flex;flex-direction:column;gap:12px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Processes and codes we write to</div>
+    <div class="vqc-chips"><span>SMAW</span><span>GTAW</span><span>GMAW</span><span>FCAW</span><span>SAW</span><span>PAW</span><span>ESW</span><span>EGW</span><span>OFW</span><span>Stud</span><span>Combinations (e.g. GTAW root + SMAW fill)</span></div>
+    <div class="vqc-chips"><span>ASME IX</span><span>ASME VIII</span><span>ASME I</span><span>B31.1</span><span>B31.3</span><span>AWS D1.1</span><span>API 1104</span><span>NBIC</span></div>
   </div>
 </div>
 
@@ -450,103 +453,6 @@
   </div>
 </div>
 
-<!-- ================= WORKFLOW ================= -->
-<div class="section vqc-pad vqc-pad-y" style="min-height:620px;background:var(--bg);padding:96px 64px">
-
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:64px;max-width:680px">
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">The Workflow</div>
-    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">From the field to a defensible record — one path, five steps.</div>
-    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">Built offline-first: the field never waits on signal, and nobody downstream is ever looking at a stale copy.</div>
-  </div>
-
-  <!-- Single left-to-right process flow — one story, not five separate diagrams -->
-  <div style="position:relative">
-    <svg class="vqc-flowline" viewBox="0 0 1120 40" width="100%" height="40" style="display:block;overflow:visible" preserveAspectRatio="none">
-      <line x1="60" y1="20" x2="1060" y2="20" stroke="var(--hair)" stroke-width="2"/>
-      <line x1="60" y1="20" x2="1060" y2="20" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4,7" opacity=".55"/>
-    </svg>
-
-    <div class="vqc-g5" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:-20px">
-
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">1</div>
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="var(--gold)" stroke-width="1.3">
-          <rect x="11" y="9" width="24" height="32" rx="3"/>
-          <path d="M17 17h12M17 23h12M17 29h7"/>
-          <path d="M7 12a5 5 0 0 1 7-7" stroke="var(--red)" stroke-linecap="round"/>
-        </svg>
-        <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Field Capture</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Welds, NDE, torque, tests — logged on site, fully offline. No signal, no problem.</div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">2</div>
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="var(--gold)" stroke-width="1.3">
-          <path d="M14 26a8 8 0 0 1 1-16 10 10 0 0 1 19 3 7 7 0 0 1-1 13H14z"/>
-          <path d="M23 22v12M18 29l5-5 5 5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Auto-Sync</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">The moment there's signal, it pushes to the secure cloud — nothing waits on a person.</div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">3</div>
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="var(--gold)" stroke-width="1.3">
-          <rect x="10" y="8" width="26" height="32" rx="2"/>
-          <path d="M16 18l5 5 9-11" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M16 30h14" stroke-linecap="round"/>
-        </svg>
-        <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Reviewed &amp; Locked</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Accepted results lock the moment they're filed. Every change after that is a logged, dated entry.</div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">4</div>
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="var(--gold)" stroke-width="1.3">
-          <circle cx="18" cy="15" r="7"/>
-          <path d="M6 39a12 11 0 0 1 24 0" fill="none"/>
-          <g stroke="var(--red)">
-            <rect x="30" y="20" width="12" height="10" rx="2"/>
-            <path d="M33 20v-4a3 3 0 0 1 6 0v4"/>
-          </g>
-        </svg>
-        <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Access Granted</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Each admin, crew member or customer sees exactly the sections they were granted — automatically, nothing more.</div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px">
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">5</div>
-        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="var(--gold)" stroke-width="1.3">
-          <path d="M7 34V20M17 34V12M27 34V24M37 34V8" stroke-linecap="round"/>
-          <circle cx="37" cy="8" r="2.4" fill="var(--red)" stroke="none"/>
-        </svg>
-        <div style="font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--fg)">Always Current</div>
-        <div style="font-family:var(--body);font-weight:300;font-size:12.5px;line-height:1.5;color:var(--fg-dim)">Weld logs, completion %, and dashboards update live — nobody has to ask "what's the status."</div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="vqc-g4" style="margin-top:48px;border-top:1px solid var(--hair);padding-top:32px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px">
-    <div>
-      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Row-Level Access</div>
-      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every table checks who you are before it answers — nothing is open by default.</div>
-    </div>
-    <div>
-      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Encrypted, Always</div>
-      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Data encrypted at rest (AES-256) and in transit (TLS), end to end.</div>
-    </div>
-    <div>
-      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Certified Infrastructure</div>
-      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Built on SOC 2 Type II and ISO 27001–certified cloud infrastructure.</div>
-    </div>
-    <div>
-      <div style="font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg)">Segmented by Project</div>
-      <div style="margin-top:6px;font-family:var(--body);font-weight:300;font-size:13px;line-height:1.5;color:var(--fg-dim)">Every project and grant is access-controlled at the row level — your data, walled off from every other client's.</div>
-    </div>
-  </div>
-</div>
-
 <!-- ================= PROOF ================= -->
 <div class="section vqc-pad vqc-pad-y" id="proof" style="background:var(--bg);padding:96px 64px 110px;display:flex;flex-direction:column;gap:88px">
 
@@ -556,12 +462,7 @@
       <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:44px;line-height:1.1;color:var(--fg)">One spool, from the pipe rack to the hydro test.</div>
       <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;color:var(--fg-dim)">Walk-down and ITP, materials logged with no signal, a rejected fit-up, the weld map filling the weld log, the hydro test and its NCR — then the next job starting with the approved ITP already in place.</div>
     </div>
-    <div class="vqc-video">
-      <video controls preload="none" playsinline poster="media/velocity-demo-poster.jpg">
-        <source src="media/velocity-demo.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="vqc-vcap"><span>3 min 23 s · every screen is the real app</span><span>Demo · fictional job JOB-1001 · Company One</span></div>
+    <a href="platform.html#watch" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:1px solid var(--gold);border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">▶ Watch the 3-minute demo</a>
   </div>
 
   <div>

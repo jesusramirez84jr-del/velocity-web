@@ -101,6 +101,16 @@
     .vqc-group{margin-top:32px}
   }
 </style>
+<style>
+  /* 24 Sep 2026 trim: one-line feature tiles */
+  .vqc-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .vqc-tiles > div{background:var(--card);padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+  .vqc-tiles .t{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)}
+  .vqc-tiles .d{font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.5;color:var(--fg-dim)}
+  .vqc-tiles a{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+  @media (max-width:1000px){ .vqc-tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:560px){ .vqc-tiles{grid-template-columns:1fr} .vqc-tiles > div{padding:16px 18px} }
+</style>
 </head>
 <body>
 
@@ -144,7 +154,7 @@
       Built for <span style="color:var(--gold)">speed</span>. Built to make your team <span style="color:var(--gold)">know the code</span>, not just follow it.
     </div>
     <div class="vqc-lead" style="font-family:var(--body);font-weight:300;font-size:18px;line-height:1.6;color:var(--fg-dim);max-width:680px">
-      This industry doesn't wait, and your paperwork shouldn't either. Velocity exists to make the field move faster — and to train the people doing the work until they understand the code instead of just checking a box. Defending it in front of a Board is just what happens once that's already true.
+      This industry doesn't wait, and your paperwork shouldn't either. Velocity makes the field move faster — and trains your people to understand the code, not just check a box.
     </div>
   </div>
 </div>
@@ -171,7 +181,7 @@
   </div>
 
   <!-- ARCHITECTURE DIAGRAM -->
-  <div class="vqc-diagram" style="margin-bottom:56px;border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
+  <div class="vqc-diagram" style="border:1px solid var(--hair);border-radius:6px;padding:36px 24px;background:var(--card)">
     <div class="vqc-diagram-hint" style="display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px 8px">Swipe sideways to see the whole diagram →</div>
     <svg viewBox="0 0 1160 560" width="100%" style="display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
       <text x="580" y="34" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="12" letter-spacing="2" fill="var(--gold)">FIELD → SYNC → DATABASE → ROLE-BASED ACCESS</text>
@@ -231,45 +241,6 @@
     </svg>
   </div>
 
-  <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:4px;overflow:hidden">
-
-    <!-- LAYER 1 -->
-    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
-      <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">1</div>
-      <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Field App</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        Runs in a browser on whatever's in the inspector's hand — a laptop, a tablet. Every weld, torque reading, NDE result, and drawing markup is written to the device first. No signal in the field is not a problem — it's the assumed condition, not the exception.
-      </div>
-    </div>
-
-    <!-- LAYER 2 -->
-    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg);border-bottom:1px solid var(--hair)">
-      <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">2</div>
-      <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Sync Layer</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        The moment there's a connection, changes push up automatically — no "upload" button, no batch job someone has to remember to run. Nothing on the device is the permanent record; the device is just where the truth starts. Offline edits are never silently lost — if two people change the same record the conflict is caught, a deleted row stays deleted, and an old copy on a device never overwrites the cloud.
-      </div>
-    </div>
-
-    <!-- LAYER 3 -->
-    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--card);border-bottom:1px solid var(--hair)">
-      <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">3</div>
-      <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Secure Database</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        A real relational database (PostgreSQL), not a shared spreadsheet or a folder of files. Every table has row-level security — the database itself checks who's asking before it answers, on every single query, not just at the login screen: 33 of 33 tables, 107 policies. A PASS/FAIL weld or a recorded NDE result cannot be deleted by crew, and deleted rows are archived, never just gone.
-      </div>
-    </div>
-
-    <!-- LAYER 4 -->
-    <div class="vqc-rows" style="display:grid;grid-template-columns:64px 220px 1fr;gap:24px;align-items:center;padding:28px 32px;background:var(--bg)">
-      <div style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:15px;color:var(--gold)">4</div>
-      <div style="font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg)">Role-Based Access</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">
-        Four kinds of accounts, each with a genuinely different view of the same job. Velocity, the owner, runs the platform and is the only one who can add, switch off or remove a company. A client admin runs their company's jobs, invites their own crew and customers and approves ITPs — never more than their own scope. Crew fill in only the sections they are given, every upload traced to them. A customer sees only the sections left on VIEW for them and cannot change anything.
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <!-- ================= HOW A JOB MOVES (swimlane) ================= -->
@@ -418,163 +389,44 @@
 
 <!-- ================= WHAT'S ACTUALLY IN IT ================= -->
 <div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;max-width:720px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;max-width:720px">
     <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Inside The Platform</div>
     <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:38px;line-height:1.15;color:var(--fg)">What's actually built, not a roadmap.</div>
-    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Every item below is running on live jobs today, grouped the way the folder is organised. One build for everyone on the platform — when a tool gets sharper, every company has it on their next load.</div>
+    <div style="font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;color:var(--fg-dim)">Running on live jobs today. Every tool writes the same job record — change a weld in the field and the drawing, the board and the log update together.</div>
   </div>
 
   <div class="vqc-group">Field records</div>
-  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="18" height="23" rx="2"/><path d="M10.5 15.5l3 3 6-6.5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Weld Traceability</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Every weld with size, schedule, material, process, WPS, welder stamps, NDE method and result — completion tracked in diameter-inches. Repairs, cut-outs and tracers keep their own rows; rejects stay visible until they are cleared.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M15 2.5V6M15 24v3.5M2.5 15H6M24 15h3.5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Isometric Drawings, Live</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Load an IFC PDF, a photo of a marked-up print, or sketch on a true isometric grid. Marks carry real data: the welder's stencil and date on the field weld, an NDE stamp that writes the weld log and NDE register, a legend that learns the job's own words.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h10l5 5v17H8z"/><path d="M18 4v5h5"/><path d="M11 14h8M11 18h8M11 22h5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Certificates Read For You</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Drop a stack of mill certificates. Every page is read: one row per heat, the same heat on many components, sideways pages turned, unreadable pages brought up to be typed, skipped pages held until someone deals with them. The MTR index and package file themselves.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 25V15M15 25V6M23 25V18"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Bolt-Up &amp; Pressure Testing</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Flange-by-flange torque log with the 30% / 60% / final sequence. Hydro and pneumatic packs: the chart disc is read into the pack, gauge certificates are checked for expiry, and a test boundary drawn on the sheet fills the pack's weld scope.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="22" height="17" rx="2"/><circle cx="11" cy="13" r="2.4"/><path d="M4 21l7-6 5 4 4-3 6 5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Docs, Photos &amp; Vendor Uploads</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One cabinet for drawings, reports, photos and certificates. Every upload is traced to a person; a fabricator's or vendor's upload lands as needs-review until someone accepts it — or rejects it with a reason they are told about.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="18" height="21" rx="2"/><path d="M10 11h10M10 15h10M10 19h6"/><path d="M11 3v4M19 3v4"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Daily Reports</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">What happened each day — people on site, work performed, issues, progress — with the NCRs raised that day counted in from the register, and every report kept in the history.</div>
-    </div>
+  <div class="vqc-tiles">
+    <div><div class="t">Weld Traceability</div><div class="d">Every weld with WPS, welder, NDE and result. Repairs and rejects stay visible.</div></div>
+    <div><div class="t">Isometric Drawings, Live</div><div class="d">Mark welds, stencils and NDE on the drawing — the weld log fills itself.</div></div>
+    <div><div class="t">Certificates Read For You</div><div class="d">Drop the MTR stack. Every page read, one row per heat.</div></div>
+    <div><div class="t">Bolt-Up &amp; Pressure Testing</div><div class="d">Torque sequence per flange. Test packs with chart and gauge-cert checks.</div></div>
+    <div><div class="t">Docs, Photos &amp; Vendor Uploads</div><div class="d">One cabinet. Every upload traced; vendor files reviewed before they are accepted.</div></div>
+    <div><div class="t">Daily Reports</div><div class="d">People, work, issues and progress — with the day's NCRs counted in.</div></div>
   </div>
 
   <div class="vqc-group">Control &amp; approval</div>
-  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="20" height="18" rx="2"/><path d="M9 12h12M9 16h8"/><path d="M17 20l2 2 4-4"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">ITP Approvals In The App</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A responsible person on every inspection point. Submitting freezes a numbered revision; the client's admin approves or asks for changes; every approved revision is filed as a signed PDF. Edits after approval bump the revision automatically.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h22"/><path d="M4 22V10h5v12M12.5 22V6h5v16M21 22v-8h5v8"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Job Flow Board</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Nine stages — drawings, materials, welding, NDE, test, coating, installation, pre-commissioning, turnover — read live from the folder. A failed weld or pack, a revised drawing or an ITP still waiting turns its stage yellow. Stages you don't use drop out.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4l12 21H3z"/><path d="M15 12v6"/><circle cx="15" cy="21" r=".9" fill="var(--gold)"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Needs Attention</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One list for every mismatch the folder finds on its own: a stencil with no qualification, bolt-up marks without a torque log, a drawing revised under its welds, a certificate page that was skipped. Each item holds the flow until someone deals with it — and records who did.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="20" height="22" rx="2"/><path d="M9 10h12M9 14h12M9 18h7"/><path d="M20 20l3 3M23 20l-3 3" stroke="var(--red)"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">One NCR Register</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One numbered register for the whole job. A number is never reused and nothing is deleted — a mistake becomes VOID. Critical and major audit findings raise their NCR themselves and close it when the finding closes. It prints with the package.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h16v22H7z"/><path d="M11 9h8M11 13h8M11 17h5"/><circle cx="21" cy="21" r="4" fill="var(--bg)"/><path d="M19.5 21l1 1 2-2"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Audit &amp; Safety Reports</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Built around findings: severity, type of harm, work impact and status, with a photo or a marked-up clause attached. Numbered reports, a real PDF built on the device, sent to the job's people and kept in the history.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 15L21 9.5"/><circle cx="15" cy="15" r="1.8" fill="var(--gold)" stroke="none"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Physical Completion</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Shop welding inches, field welding inches (live from the weld log when left blank), flange assembly percent and pressure-test packages passed — one plain overall number everyone on the job sees the same way.</div>
-    </div>
+  <div class="vqc-tiles">
+    <div><div class="t">ITP Approvals In The App</div><div class="d">Numbered revisions, approved by the client, filed as signed PDFs.</div></div>
+    <div><div class="t">Job Flow Board</div><div class="d">Nine stages read live from the folder. A problem turns its stage yellow.</div></div>
+    <div><div class="t">Needs Attention</div><div class="d">Every mismatch the folder finds, held until someone deals with it.</div></div>
+    <div><div class="t">One NCR Register</div><div class="d">Numbered once, never reused, never deleted.</div></div>
+    <div><div class="t">Audit &amp; Safety Reports</div><div class="d">Findings with severity, photos and status, as numbered PDFs.</div></div>
+    <div><div class="t">Physical Completion</div><div class="d">Welding inches, flanges and test packs rolled into one number.</div></div>
   </div>
 
   <div class="vqc-group">Welding program</div>
-  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="10" r="4.5"/><path d="M3 25a8 8 0 0 1 16 0"/><path d="M19 15l2.5 2.5L27 12"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Welder Qualification &amp; Continuity</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">One welder log per job. Continuity is worked out from the welds themselves — every dated weld by that stamp and process extends it — and a weld made after a lapse, before qualification or outside the process is flagged. A continuity report prints per welder.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 25L18 12"/><path d="M15 9l6 6"/><path d="M20 4l6 6-3.5 1-3.5-3.5z"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">WPS &amp; PQR Library</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">WPSs and their supporting PQRs are entered once for the company and picked by every job. A WPS number used on the weld log but not on file is flagged before anyone has to find it in an audit.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="22" height="20" rx="2"/><path d="M8 11h3M8 16h3M8 21h3"/><path d="M14 11h8M14 16h8M14 21h5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Weld Quality Compliance</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">An ISO 3834 compliance status read live from the tabs that own each topic — welders, WPS, filler metal, MTRs, PWHT, NDE, pressure tests, ITP, calibration, NCRs, records — each marked OK, CHECK or PROBLEM, with a button straight to where it's fixed.</div>
-    </div>
+  <div class="vqc-tiles">
+    <div><div class="t">Welder Qualification &amp; Continuity</div><div class="d">Worked out from the welds. A lapsed stamp is flagged on the weld.</div></div>
+    <div><div class="t">WPS &amp; PQR Library</div><div class="d">Entered once, picked by every job. An unknown WPS number is flagged.</div><a href="home.html#wps">Watch the WPS / PQR video →</a></div>
+    <div><div class="t">Weld Quality Compliance</div><div class="d">ISO 3834 status — OK, CHECK or PROBLEM — with a link to fix it.</div></div>
   </div>
 
   <div class="vqc-group">Company &amp; people</div>
-  <div class="vqc-g3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)">
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h6v19H5zM12 6h6v19h-6z"/><path d="M19.5 7l5.5 1.5-4.5 17-5.5-1.5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Company Library</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">Approved ITPs, WPSs and welders belong to the company, not one job. The next job starts ready: the ITP carries over marked as carried, welder continuity follows across every job, and every change goes into the library's history.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="22" height="16" rx="2"/><path d="M4 10l11 7 11-7"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Who Sees What</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A client admin runs their own jobs and invites their own crew and customers. Crew fill in only the sections they're given; a customer sees only the sections left on VIEW and never changes anything. Invite links expire; notices go to the person they are meant for.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V4h14v8"/><rect x="4" y="12" width="22" height="9" rx="1.5"/><path d="M8 17v9h14v-9"/><path d="M11 21h8M11 24h5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Printed In Your Brand</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">The turnover book prints under your company's logo and name: cover, index and every section page stamped with the job. Your own cover, your own section names, only the sections you use — nineteen when you want them all.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4v14M9 12l6 6 6-6"/><path d="M5 20v5h20v-5"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Backups, Exports &amp; Sharing</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A monthly backup of every company's records, exports on request, and a share page for chosen sections and dates whose document links expire after seven days.</div>
-    </div>
-    <div class="vqc-card" style="background:var(--card);padding:32px;display:flex;flex-direction:column;gap:14px">
-      <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="15" r="11"/><path d="M15 9v6l4 3"/></svg>
-      <div style="font-family:var(--display);font-weight:600;font-size:16px;text-transform:uppercase;color:var(--fg)">Activity &amp; Notices</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--fg-dim)">A history that names the person behind every change, prints with the package, and notices for approvals, holds, shared packages and rejected uploads — so nobody has to ask what happened.</div>
-    </div>
-    <div class="vqc-card" style="background:linear-gradient(160deg, rgba(227,214,180,.10), transparent 60%), var(--card);padding:32px;display:flex;flex-direction:column;justify-content:center;gap:10px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">The Point</div>
-      <div style="font-family:var(--display);font-weight:500;font-size:16.5px;line-height:1.4;color:var(--fg)">Every one of these tools reads and writes the same underlying record.</div>
-      <div style="font-family:var(--body);font-weight:400;font-style:italic;font-size:13.5px;line-height:1.5;color:var(--fg-dim)">A weld status changed from the field shows up on the drawing, in the Job Flow board, in the completion number and in the log — all at once, because it's one system, not a dozen that happen to share a login page.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= DISCIPLINES ================= -->
-<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
-  <div class="vqc-box" style="border:1px solid var(--hair);border-radius:6px;padding:40px 44px;background:var(--card);display:flex;flex-direction:column;gap:20px">
-    <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)">Disciplines</div>
-      <div style="font-family:var(--display);font-weight:600;font-size:26px;line-height:1.2;color:var(--fg)">Welding is in place. The other trades are being built on the same structure.</div>
-      <div style="font-family:var(--body);font-weight:300;font-size:14.5px;line-height:1.6;color:var(--fg-dim)">For your in-house shop and for QA over your subcontractors.</div>
-    </div>
-    <div class="vqc-chips">
-      <span style="border-color:var(--gold);color:var(--gold)">Welding &amp; welded fabrication · in place</span>
-      <span style="border-color:var(--gold);color:var(--gold)">Power piping fabrication · in place</span>
-      <span style="border-color:rgba(227,214,180,.45);color:var(--gold2)">Pressure vessels &amp; towers · welding in place</span>
-      <span style="border-style:dashed;color:var(--fg-faint)">Mechanical · coming soon</span>
-      <span style="border-style:dashed;color:var(--fg-faint)">Civil · coming soon</span>
-      <span style="border-style:dashed;color:var(--fg-faint)">I&amp;E · coming soon</span>
-    </div>
-    <a href="home.html#subqa" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)">Shop &amp; subcontractor QA →</a>
-  </div>
-</div>
-
-<!-- ================= WHY IT'S BUILT THIS WAY ================= -->
-<div class="section vqc-pad" style="padding:0 64px 96px;background:var(--bg)">
-  <div class="vqc-box" style="border:1px solid var(--hair);border-radius:6px;padding:56px 48px;background:linear-gradient(160deg, rgba(227,214,180,.07), transparent 55%), var(--card)">
-    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Why It's Built This Way</div>
-    <div class="vqc-h2" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2;color:var(--fg);max-width:760px;margin-bottom:18px">Fast doesn't mean cutting corners. Done right, it teaches the next person too.</div>
-    <div style="font-family:var(--body);font-weight:300;font-size:16px;line-height:1.7;color:var(--fg-dim);max-width:760px">
-      This industry doesn't slow down for anyone. Every reference, every logged weld, every drawing markup on this platform is built to double as a training tool — so the people learning under you actually understand the code, not just check a box. That's the difference between running inspections and building a team that outlasts any one job. Velocity isn't just the pace of the work — it's what happens when a crew stops guessing and starts knowing.
-    </div>
-    <div class="vqc-root" style="margin-top:28px">Every area on this earth was created with a structure, and every spot has its place. Set your work in place the way Velocity sets it, and success is not a hope — <b>it is the root.</b></div>
+  <div class="vqc-tiles">
+    <div><div class="t">Company Library</div><div class="d">ITPs, WPSs and welders carry over to the next job.</div></div>
+    <div><div class="t">Printed In Your Brand</div><div class="d">The turnover book under your logo — only the sections you use.</div></div>
+    <div><div class="t">Backups, History &amp; Notices</div><div class="d">Monthly backup, exports on request, and every change has a name on it.</div></div>
   </div>
 </div>
 
